@@ -48,14 +48,14 @@ add_executable(gui ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HP
 #qt5_use_modules(gui Quick Core)
 MESSAGE(WARNING ${GuiQt5})
 
-SET(Qt5DBus_DIR "/opt/qt59/lib/cmake/Qt5DBus")
-SET(Qt5Gui_DIR "/opt/qt59/lib/cmake/Qt5Gui")
-SET(Qt5Network_DIR "/opt/qt59/lib/cmake/Qt5Network")
-SET(Qt5QMl_DIR "/opt/qt59/lib/cmake/Qt5Qml")
-SET(Qt5Quick_DIR "/opt/qt59/lib/cmake/Qt5Quick")
-SET(Qt5Test_DIR "/opt/qt59/lib/cmake/Qt5Test")
-SET(Qt5Widgets_DIR "/opt/qt59/lib/cmake/Qt5Widgets")
-SET(Qt5Xml_DIR "/opt/qt59/lib/cmake/Qt5Xml")
+#SET(Qt5DBus_DIR "/opt/qt59/lib/cmake/Qt5DBus")
+#SET(Qt5Gui_DIR "/opt/qt59/lib/cmake/Qt5Gui")
+#SET(Qt5Network_DIR "/opt/qt59/lib/cmake/Qt5Network")
+#SET(Qt5QMl_DIR "/opt/qt59/lib/cmake/Qt5Qml")
+#SET(Qt5Quick_DIR "/opt/qt59/lib/cmake/Qt5Quick")
+#SET(Qt5Test_DIR "/opt/qt59/lib/cmake/Qt5Test")
+#SET(Qt5Widgets_DIR "/opt/qt59/lib/cmake/Qt5Widgets")
+#SET(Qt5Xml_DIR "/opt/qt59/lib/cmake/Qt5Xml")
 
 
 target_link_libraries(gui ${QT_LIBRARIES} ${catkin_LIBRARIES})

@@ -2,15 +2,12 @@ import QtQuick 2.5
 
 Rectangle{
     id: footer
-    height: 40
-    color: "#fcf8e3"
-    anchors.bottom: parent.bottom
-    anchors.left: parent.left
-    anchors.right:parent.right
+    color: panelColor
+    anchors.fill: parent
 
     Rectangle {
         height: 1
-        color: "#07ABBC"
+        color: panelBorderColor
         anchors.left: parent.left
         anchors.right:parent.right
         anchors.bottom: parent.top

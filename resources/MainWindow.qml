@@ -1,77 +1,108 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.2
+import ros.videocomponent 1.0
 
 Window {
+
+    // Properties
+    property string appTitle : "Ground robot visualization GUI"
+    property string appLogo : "qrc:///images/logo.png"
+    // Colors
+    property string panelColor : "#fcf8e3"
+    property string panelTextColor : "#07ABBC"
+    property string panelBorderColor : "#07ABBC"
+
     id: window1
     width: 1024
     height: 768
     visibility: "FullScreen"
     visible: true
 
-    Header{
-    }
-
-
-
-    Button{
-        id: exitButton
-        width:180
-        height:50
-        text: "Exit App"
-        anchors.centerIn: parent
-        onClicked: {
-            Qt.quit();
+    Rectangle{
+        id: headerArea
+        height: 100
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right:parent.right
+        Header{
         }
     }
 
-    Button{
-        width:180
-        height:50
-        text: "Exit Fullscreen"
-        anchors.rightMargin: 2
-        anchors.right: exitButton.left
-        anchors.top : exitButton.top
-        onClicked: {
-            window1.visibility = "Windowed";
+    Item {
+        id: video_pane
+        width: 640
+        height: 480
+        anchors.top : headerArea.bottom
+        anchors.left : parent.left
+        anchors.margins: 15
+        ROSVideoComponent {
+            // @disable-check M16
+            objectName: "videoStream"
+            id: videoStream
+            // @disable-check M16`
+            anchors.bottom: parent.bottom
+            // @disable-check M16
+            anchors.bottomMargin: 0
+            // @disable-check M16
+            anchors.top: parent.top
+            // @disable-check M16
+            anchors.left: parent.left
+            // @disable-check M16
+            anchors.right: parent.right
+            // @disable-check M16
+            topic: topic.text
         }
     }
-
-    Button{
-        id: fullscreenButton
-        width:180
-        height:50
-        text: "Fullscreen"
-        anchors.leftMargin: 2
-        anchors.left: exitButton.right
-        anchors.top : exitButton.top
-        onClicked: {
-            window1.visibility = "FullScreen";
+/*
+    Canvas {
+        id: cameracanvas
+        width: 640
+        height: 480
+        onPaint: {
+            var ctx = getContext("2d");
+            ctx.fillStyle = Qt.rgba(0, 0, 0, 1);
+            ctx.fillRect(0, 0, width, height);
         }
-
+        anchors.top : headerArea.bottom
+        anchors.left : parent.left
+        anchors.margins: 15
+    }
+*/
+    Canvas {
+        id: mapcanvas
+        width: 640
+        height: 480
+        onPaint: {
+            var ctx = getContext("2d");
+            ctx.fillStyle = Qt.rgba(0, 0, 0, 1);
+            ctx.fillRect(0, 0, width, height);
+        }
+        anchors.top : headerArea.bottom
+        anchors.left : cameracanvas.right
+        anchors.margins: 15
     }
 
-    Button{
-        id: joyBut
-        objectName: "joy"
-        width:180
-        height:50
-        text: "sss"
-        anchors.leftMargin: 2
-        anchors.left: fullscreenButton.right
-        anchors.top : fullscreenButton.top
-    }
-
+    /*
     Text{
         objectName: "textJoy"
         text: "aaa"
         anchors.leftMargin: 2
-        anchors.left: joyBut.right
-        anchors.top : joyBut.top
+        anchors.left: headerArea.left
+        anchors.top : headerArea.bottom
     }
-
+*/
 
     //ControlPanel{}
 
-    Footer{}
+    Rectangle{
+        id: footerArea
+        height: 40
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right:parent.right
+        Footer{}
+    }
+
+
 }
