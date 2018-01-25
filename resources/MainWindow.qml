@@ -29,8 +29,9 @@ Window {
         }
     }
 
-    Item {
+    Rectangle {
         id: video_pane
+        color: "black"
         width: 640
         height: 480
         anchors.top : headerArea.bottom
@@ -51,7 +52,7 @@ Window {
             // @disable-check M16
             anchors.right: parent.right
             // @disable-check M16
-            topic: topic.text
+            //topic: "/wide_stereo/left/image_raw"
         }
     }
 /*
@@ -68,7 +69,7 @@ Window {
         anchors.left : parent.left
         anchors.margins: 15
     }
-*/
+
     Canvas {
         id: mapcanvas
         width: 640
@@ -82,7 +83,7 @@ Window {
         anchors.left : cameracanvas.right
         anchors.margins: 15
     }
-
+*/
     /*
     Text{
         objectName: "textJoy"
