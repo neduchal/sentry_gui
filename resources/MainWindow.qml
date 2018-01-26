@@ -30,7 +30,7 @@ Window {
     }
 
     Rectangle {
-        id: video_pane
+        id: camera_panel
         color: "black"
         width: 640
         height: 480
@@ -39,8 +39,8 @@ Window {
         anchors.margins: 15
         ROSVideoComponent {
             // @disable-check M16
-            objectName: "videoStream"
-            id: videoStream
+            objectName: "cameraStream"
+            id: cameraStream
             // @disable-check M16`
             anchors.bottom: parent.bottom
             // @disable-check M16
@@ -55,6 +55,61 @@ Window {
             //topic: "/wide_stereo/left/image_raw"
         }
     }
+
+    Rectangle {
+        id: thermo_panel
+        color: "black"
+        width: 320
+        height: 240
+        anchors.top : headerArea.bottom
+        anchors.left : camera_panel.right
+        anchors.margins: 15
+        ROSVideoComponent {
+            // @disable-check M16
+            objectName: "thermoStream"
+            id: thermoStream
+            // @disable-check M16`
+            anchors.bottom: parent.bottom
+            // @disable-check M16
+            anchors.bottomMargin: 0
+            // @disable-check M16
+            anchors.top: parent.top
+            // @disable-check M16
+            anchors.left: parent.left
+            // @disable-check M16
+            anchors.right: parent.right
+            // @disable-check M16
+            //topic: "/wide_stereo/left/image_raw"
+        }
+    }
+
+    Rectangle {
+        id: map_panel
+        color: "gray"
+        width: 480
+        height: 480
+        anchors.top : headerArea.bottom
+        anchors.left : thermo_panel.right
+        anchors.margins: 15
+        ROSVideoComponent {
+            // @disable-check M16
+            objectName: "mapStream"
+            id: mapStream
+            // @disable-check M16`
+            anchors.bottom: parent.bottom
+            // @disable-check M16
+            anchors.bottomMargin: 0
+            // @disable-check M16
+            anchors.top: parent.top
+            // @disable-check M16
+            anchors.left: parent.left
+            // @disable-check M16
+            anchors.right: parent.right
+            // @disable-check M16
+            //topic: "/wide_stereo/left/image_raw"
+        }
+    }
+
 /*
     Canvas {
         id: cameracanvas

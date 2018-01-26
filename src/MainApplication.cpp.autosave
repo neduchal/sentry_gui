@@ -21,7 +21,7 @@ void MainApplication::run() {
     connect(timer, SIGNAL(timeout()), this, SLOT(mainLoop()));
     timer->start(0);
 
-    ROSVideoComponent *  camera = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("cameraStream"));
+    ROSVideoComponent * camera = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("cameraStream"));
     ROSVideoComponent * thermo = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("thermoStream"));
     ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
 
