@@ -86,8 +86,8 @@ Window {
     Rectangle {
         id: map_panel
         color: "gray"
-        width: 480
-        height: 480
+        width: 384
+        height: 384
         anchors.top : headerArea.bottom
         anchors.left : thermo_panel.right
         anchors.margins: 15

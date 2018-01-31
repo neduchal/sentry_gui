@@ -9,29 +9,29 @@ MainApplication::MainApplication() {
 }
 
 void MainApplication::run() {
+  // Registration of QML component
+  qmlRegisterType<ROSVideoComponent>("ros.videocomponent",1,0,"ROSVideoComponent");
 
-    qmlRegisterType<ROSVideoComponent>("ros.videocomponent",1,0,"ROSVideoComponent");
+  //this loads the qml file we are about to create
+  this->load(QUrl(QStringLiteral("qrc:/qml/MainWindow.qml")));
 
+  //Setup a timer to get the application's idle loop
+  QTimer *timer = new QTimer(this);
+  connect(timer, SIGNAL(timeout()), this, SLOT(mainLoop()));
+  timer->start(0);
 
-    //this loads the qml file we are about to create
-    this->load(QUrl(QStringLiteral("qrc:/qml/MainWindow.qml")));
-
-    //Setup a timer to get the application's idle loop
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(mainLoop()));
-    timer->start(0);
-
-    ROSVideoComponent *  camera = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("cameraStream"));
-    ROSVideoComponent * thermo = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("thermoStream"));
-    ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
-
-    camera->setup(&nh, "/wide_stereo/left/image_raw");
-    thermo->setup(&nh, "/thermo_topic");
-    map->setup(&nh, "/map_stream");
+  // Objects of ROSVideoComponent for Camera, TermoCamera and Map streams
+  ROSVideoComponent *  camera = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("cameraStream"));
+  ROSVideoComponent * thermo = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("thermoStream"));
+  ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
+  // Setup of streams
+  camera->setup(&nh, "/camera", QImage::Format_RGB888, "compressed");
+  thermo->setup(&nh, "/thermo_topic", QImage::Format_Grayscale8);
+  map->setup(&nh, "/map_stream", QImage::Format_Grayscale8);
 }
 
 void MainApplication::mainLoop() {
-    ros::spinOnce();
+  ros::spinOnce();
 }
 
 QObject * MainApplication::getQmlObject(const QString &objectName)

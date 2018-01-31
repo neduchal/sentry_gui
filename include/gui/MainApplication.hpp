@@ -3,6 +3,7 @@
 
 #include <string>
 #include <QString>
+#include <QImage>
 #include <ros/ros.h>
 #include <QtQml/QQmlApplicationEngine>
 #include "geometry_msgs/Twist.h"

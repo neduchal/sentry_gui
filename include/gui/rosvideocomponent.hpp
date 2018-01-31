@@ -17,7 +17,7 @@ class ROSVideoComponent : public QQuickPaintedItem {
         ROSVideoComponent(QQuickItem *parent = 0);
 
         void paint(QPainter *painter);
-        void setup(ros::NodeHandle * nh, std::string topic);
+        void setup(ros::NodeHandle * nh, std::string topic, QImage::Format format, std::string transportType="raw");
 
     private:
         void receiveImage(const sensor_msgs::Image::ConstPtr & msg);
@@ -27,6 +27,7 @@ class ROSVideoComponent : public QQuickPaintedItem {
         // these are used to store our image buffer
         QImage * currentImage;
         uchar * currentBuffer;
+        QImage::Format imageFormat;
 };
 
 #endif // ROSVIDEOCOMPONENT_HPP
