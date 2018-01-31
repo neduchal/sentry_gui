@@ -4,11 +4,11 @@ ROSVideoComponent::ROSVideoComponent(QQuickItem * parent) : QQuickPaintedItem(pa
 
 }
 
-void ROSVideoComponent::setup(ros::NodeHandle * nh, std::string topic, QImage::Format format, std::string transportType="raw") {
+void ROSVideoComponent::setup(ros::NodeHandle * nh, std::string topic, QImage::Format format, std::string transportType) {
     image_transport::ImageTransport imgTrans(*nh);
     imageSub = imgTrans.subscribe(topic, 2, &ROSVideoComponent::receiveImage, this, image_transport::TransportHints(transportType));
     imageFormat = format;
-    //ROS_INFO("setup");
+
 }
 
 void ROSVideoComponent::receiveImage(const sensor_msgs::Image::ConstPtr &msg) {

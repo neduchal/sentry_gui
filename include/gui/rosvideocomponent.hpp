@@ -17,7 +17,7 @@ class ROSVideoComponent : public QQuickPaintedItem {
         ROSVideoComponent(QQuickItem *parent = 0);
 
         void paint(QPainter *painter);
-        void setup(ros::NodeHandle * nh, std::string topic, QImage::Format format, std::string transportType="raw");
+        void setup(ros::NodeHandle * nh, std::string topic, QImage::Format format, std::string transportType);
 
     private:
         void receiveImage(const sensor_msgs::Image::ConstPtr & msg);
