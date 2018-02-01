@@ -16,7 +16,7 @@ Window {
     id: window1
     width: 1024
     height: 768
-    visibility: "FullScreen"
+    //visibility: "FullScreen"
     visible: true
 
     Rectangle{

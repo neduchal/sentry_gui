@@ -25,9 +25,9 @@ void MainApplication::run() {
   ROSVideoComponent * thermo = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("thermoStream"));
   ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
   // Setup of streams
-  camera->setup(&nh, "/camera", QImage::Format_RGB888, "compressed");
+  camera->setup(&nh, "/camera", QImage::Format_Grayscale8, "raw"); // in the case of grayscale cam
   thermo->setup(&nh, "/thermo_topic", QImage::Format_Grayscale8, "raw");
-  map->setup(&nh, "/map_stream", QImage::Format_Grayscale8, "raw");
+  map->setup(&nh, "/map_stream", QImage::Format_RGB888, "raw");
 }
 
 void MainApplication::mainLoop() {
