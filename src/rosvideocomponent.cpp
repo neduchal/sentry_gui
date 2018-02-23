@@ -8,7 +8,6 @@ void ROSVideoComponent::setup(ros::NodeHandle * nh, std::string topic, QImage::F
     image_transport::ImageTransport imgTrans(*nh);
     imageSub = imgTrans.subscribe(topic, 2, &ROSVideoComponent::receiveImage, this, image_transport::TransportHints(transportType));
     imageFormat = format;
-
 }
 
 void ROSVideoComponent::receiveImage(const sensor_msgs::Image::ConstPtr &msg) {

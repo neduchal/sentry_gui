@@ -110,46 +110,7 @@ Window {
         }
     }
 
-/*
-    Canvas {
-        id: cameracanvas
-        width: 640
-        height: 480
-        onPaint: {
-            var ctx = getContext("2d");
-            ctx.fillStyle = Qt.rgba(0, 0, 0, 1);
-            ctx.fillRect(0, 0, width, height);
-        }
-        anchors.top : headerArea.bottom
-        anchors.left : parent.left
-        anchors.margins: 15
-    }
-
-    Canvas {
-        id: mapcanvas
-        width: 640
-        height: 480
-        onPaint: {
-            var ctx = getContext("2d");
-            ctx.fillStyle = Qt.rgba(0, 0, 0, 1);
-            ctx.fillRect(0, 0, width, height);
-        }
-        anchors.top : headerArea.bottom
-        anchors.left : cameracanvas.right
-        anchors.margins: 15
-    }
-*/
-    /*
-    Text{
-        objectName: "textJoy"
-        text: "aaa"
-        anchors.leftMargin: 2
-        anchors.left: headerArea.left
-        anchors.top : headerArea.bottom
-    }
-*/
-
-    //ControlPanel{}
+    ControlPanel{}
 
     Rectangle{
         id: footerArea
