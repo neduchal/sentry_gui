@@ -3,6 +3,7 @@
 #include <string>
 #include <QDebug>
 #include <gui/rosvideocomponent.hpp>
+#include <QtGlobal>
 
 MainApplication::MainApplication() {
 
