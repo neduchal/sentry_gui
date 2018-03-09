@@ -2,6 +2,8 @@ import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.2
 import ros.videocomponent 1.0
+//import ros.mapcomponent 1.0
+
 
 Window {
 
@@ -14,9 +16,9 @@ Window {
     property string panelBorderColor : "#07ABBC"
 
     id: window1
-    width: 1024
-    height: 768
-    //visibility: "FullScreen"
+    width: 1440
+    height: 900
+    //visibility: "FullScreen"    
     visible: true
 
     Rectangle{
@@ -37,6 +39,7 @@ Window {
         anchors.top : headerArea.bottom
         anchors.left : parent.left
         anchors.margins: 15
+        visible: false
         ROSVideoComponent {
             // @disable-check M16
             objectName: "cameraStream"
@@ -64,6 +67,7 @@ Window {
         anchors.top : headerArea.bottom
         anchors.left : camera_panel.right
         anchors.margins: 15
+        visible: false
         ROSVideoComponent {
             // @disable-check M16
             objectName: "thermoStream"
@@ -89,22 +93,24 @@ Window {
         width: 384
         height: 384
         anchors.top : headerArea.bottom
-        anchors.left : thermo_panel.right
+        anchors.left : camera_panel.right
         anchors.margins: 15
         ROSVideoComponent {
             // @disable-check M16
             objectName: "mapStream"
             id: mapStream
+            width: parent.width
+            height: parent.height
             // @disable-check M16`
-            anchors.bottom: parent.bottom
+            //anchors.bottom: parent.bottom
             // @disable-check M16
-            anchors.bottomMargin: 0
+            //anchors.bottomMargin: 0
             // @disable-check M16
             anchors.top: parent.top
             // @disable-check M16
             anchors.left: parent.left
             // @disable-check M16
-            anchors.right: parent.right
+            //anchors.right: parent.right
             // @disable-check M16
             //topic: "/wide_stereo/left/image_raw"
         }

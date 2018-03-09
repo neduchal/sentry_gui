@@ -12,7 +12,6 @@
 
   <!-- Control package -->
   <node pkg="jackal_control_package" type="control_node" name="control_node" output="screen"/>
-  <!-- <node pkg="map_to_image" type="pose_from_tf_node" name="pose_from_tf_node" output="screen" /> -->
   <node pkg="joy" type="joy_node" name="joy_node" />
 
   <include file="$(find ground_robot_visualization_gui)/launch/gmapping.launch" />

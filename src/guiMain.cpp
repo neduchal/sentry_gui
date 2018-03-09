@@ -1,5 +1,6 @@
 #include <ros/ros.h>
 #include <QGuiApplication>
+#include <QApplication>
 #include <QQmlContext>
 #include <gui/MainApplication.hpp>
 #include <gui/buttonclick.hpp>
@@ -8,7 +9,7 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "guiMain");
 
-  QGuiApplication app(argc, argv); 
+  QApplication app(argc, argv);
 
   MainApplication engine;
   //ButtonClick buttonClass;

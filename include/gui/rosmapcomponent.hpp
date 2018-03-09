@@ -1,5 +1,5 @@
-#ifndef ROSVIDEOCOMPONENT_HPP
-#define ROSVIDEOCOMPONENT_HPP
+#ifndef ROSMAPCOMPONENT_HPP
+#define ROSMAPCOMPONENT_HPP
 
 #include <QQuickPaintedItem>
 #include <ros/ros.h>
@@ -23,11 +23,10 @@ class ROSMapComponent : public QQuickPaintedItem {
         virtual ~ROSMapComponent();
 
         void paint(QPainter *painter);
-        void setup(ros::NodeHandle *nh, std::string topic);
+        void setup(std::string topic);
 
     private:
-        ros::NodeHandle * nh;
-        ros::Subscriber map_subscriber;
+        //ros::NodeHandle * nh;
         rviz::VisualizationManager* manager_;
         rviz::RenderPanel* render_panel_;
         rviz::Display* grid_;
