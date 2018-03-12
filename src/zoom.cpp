@@ -6,11 +6,13 @@ Zoom::Zoom(QObject *parent) : QObject(parent)
 }
 
 void Zoom::zoomPlus() {
-   std_msgs::Float32 zoom_factor = 2.0;
+   std_msgs::Float32 zoom_factor;
+   zoom_factor.data = -2.0;
    zoom_publisher.publish(zoom_factor);
 }
 
 void Zoom::zoomMinus() {
-    std_msgs::Float32 zoom_factor = -2.0;
-    zoom_publisher.publish(zoom_factor);
+  std_msgs::Float32 zoom_factor;
+  zoom_factor.data = 2.0;
+  zoom_publisher.publish(zoom_factor);
 }

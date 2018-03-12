@@ -85,23 +85,7 @@ Window {
         }
     }
 
-    Button{
-        width: 100
-        height: 50;
-        text: "+"
-        onClicked:  _zoomClass.zoomPlus()
-        anchors.bottom : thermo_panel.bottom
-        anchors.right : map_panel.left
-    }
 
-    Button{
-        width: 100
-        height: 50;
-        text: "+"
-        onClicked:  _zoomClass.zoomMinus()
-        anchors.top : thermo_panel.top
-        anchors.right : map_panel.left
-    }
 
     Rectangle {
         id: map_panel
@@ -130,6 +114,28 @@ Window {
             // @disable-check M16
             //topic: "/wide_stereo/left/image_raw"
         }
+    }
+
+    Button{
+        id: zoomPlus
+        width: 100
+        height: 50;
+        text: "+"
+        onClicked:  _zoomClass.zoomPlus()
+        anchors.top : map_panel.top
+        anchors.right : map_panel.right
+        anchors.margins: 5
+    }
+
+    Button{
+        id: zoomMinus
+        width: 100
+        height: 50;
+        text: "-"
+        onClicked:  _zoomClass.zoomMinus()
+        anchors.top : map_panel.top
+        anchors.right : zoomPlus.left
+        anchors.margins: 5
     }
 
     ControlPanel{}
