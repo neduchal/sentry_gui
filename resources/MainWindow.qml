@@ -39,7 +39,6 @@ Window {
         anchors.top : headerArea.bottom
         anchors.left : parent.left
         anchors.margins: 15
-        visible: false
         ROSVideoComponent {
             // @disable-check M16
             objectName: "cameraStream"
@@ -64,10 +63,9 @@ Window {
         color: "black"
         width: 320
         height: 240
-        anchors.top : headerArea.bottom
-        anchors.left : camera_panel.right
-        anchors.margins: 15
-        visible: false
+        anchors.top : camera_panel.bottom
+        anchors.left : camera_panel.left
+        anchors.topMargin: 15
         ROSVideoComponent {
             // @disable-check M16
             objectName: "thermoStream"
@@ -87,11 +85,29 @@ Window {
         }
     }
 
+    Button{
+        width: 100
+        height: 50;
+        text: "+"
+        onClicked:  _zoomClass.zoomPlus()
+        anchors.bottom : thermo_panel.bottom
+        anchors.right : map_panel.left
+    }
+
+    Button{
+        width: 100
+        height: 50;
+        text: "+"
+        onClicked:  _zoomClass.zoomMinus()
+        anchors.top : thermo_panel.top
+        anchors.right : map_panel.left
+    }
+
     Rectangle {
         id: map_panel
         color: "gray"
-        width: 384
-        height: 384
+        width: 700
+        height: 700
         anchors.top : headerArea.bottom
         anchors.left : camera_panel.right
         anchors.margins: 15

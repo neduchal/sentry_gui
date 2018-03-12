@@ -1,4 +1,4 @@
-#include <gui/MainApplication.hpp>
+include <gui/MainApplication.hpp>
 #include <QTimer>
 #include <string>
 #include <QDebug>
