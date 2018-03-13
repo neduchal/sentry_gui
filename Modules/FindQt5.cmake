@@ -4,31 +4,80 @@
 # set, and that Qt5 qmake is available via the system path.
 # This module defines a number of key variables and macros.
 
-set(Qt5Core_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Core")
-set(Qt5_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5")
-set(Qt5Gui_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Gui")
-set(Qt5Qml_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Qml")
-set(Qt5Quick_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Quick")
-set(Qt5Test_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Test")
-set(Qt5Widgets_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Widgets")
-set(Qt5Network_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Network")
-set(Qt5Xml_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Xml")
+set(QtPath "~/Qt/5.10.1/gcc_64/")
 
+set(Qt5Core_DIR "${QtPath}lib/cmake/Qt5Core")
+set(Qt5_DIR "${QtPath}lib/cmake/Qt5")
+set(Qt5Gui_DIR "${QtPath}lib/cmake/Qt5Gui")
+set(Qt5Qml_DIR "${QtPath}lib/cmake/Qt5Qml")
+set(Qt5Quick_DIR "${QtPath}lib/cmake/Qt5Quick")
+set(Qt5Test_DIR "${QtPath}lib/cmake/Qt5Test")
+set(Qt5Widgets_DIR "${QtPath}lib/cmake/Qt5Widgets")
+set(Qt5Network_DIR "${QtPath}lib/cmake/Qt5Network")
+set(Qt5Xml_DIR "${QtPath}lib/cmake/Qt5Xml")
+# SET QT3D
+set(Qt53DCore_DIR "${QtPath}lib/cmake/Qt53DCore")
+set(Qt53DAnimation_DIR "${QtPath}lib/cmake/Qt53DAnimation")
+set(Qt53DExtras_DIR "${QtPath}lib/cmake/Qt53DExtras")
+set(Qt53DInput_DIR "${QtPath}lib/cmake/Qt53DInput")
+set(Qt53DLogic_DIR "${QtPath}lib/cmake/Qt53DLogic")
+set(Qt53DQuick_DIR "${QtPath}lib/cmake/Qt53DQuick")
+set(Qt53DRender_DIR "${QtPath}lib/cmake/Qt53DRender")
+set(Qt53DQuickAnimation_DIR "${QtPath}lib/cmake/Qt53DQuickAnimation")
+set(Qt53DQuickExtras_DIR "${QtPath}lib/cmake/Qt53DQuickExtras")
+set(Qt53DQuickInput_DIR "${QtPath}lib/cmake/Qt53DQuickInput")
+set(Qt53DQuickRender_DIR "${QtPath}lib/cmake/Qt53DQuickRender")
+set(Qt53DQuickScene2D_DIR "${QtPath}lib/cmake/Qt53DQuickScene2D")
 
-SET(QT_QMAKE_EXECUTABLE "/home/neduchal/Qt/5.10.1/gcc_64/bin/qmake")
+SET(QT_QMAKE_EXECUTABLE "${QtPath}bin/qmake")
 
-find_package(Qt5Core ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5DBus ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Gui ${REQUIRED_QT_VERSION} PATHS  "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Qml ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Quick ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Test ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Widgets ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Network ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Xml ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Core ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5DBus ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Gui ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Qml ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Quick ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Test ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Widgets ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Network ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Xml ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+
+# Find Package for 3D
+find_package(Qt53DCore ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DAnimation ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DExtras ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DInput ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DLogic ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DQuick ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DRender ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DQuickAnimation ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DQuickExtras ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DQuickInput ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DQuickRender ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt53DQuickScene2D ${REQUIRED_QT_VERSION} PATHS "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+
 
 # Copy includes and library names into the same style as pkgconfig used for Qt4
-set(QT_INCLUDES ${Qt5Core_INCLUDE_DIRS} ${Qt5DBus_INCLUDE_DIRS} ${Qt5Gui_INCLUDE_DIRS} ${Qt5Qml_INCLUDE_DIRS} ${Qt5Quick_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS} ${Qt5Test_INCLUDE_DIRS} ${Qt5Widgets_INCLUDE_DIRS})
+set(QT_INCLUDES ${Qt5Core_INCLUDE_DIRS}
+                ${Qt5DBus_INCLUDE_DIRS}
+                ${Qt5Gui_INCLUDE_DIRS}
+                ${Qt5Qml_INCLUDE_DIRS}
+                ${Qt5Quick_INCLUDE_DIRS}
+                ${Qt5Network_INCLUDE_DIRS}
+                ${Qt5Test_INCLUDE_DIRS}
+                ${Qt5Widgets_INCLUDE_DIRS}
+                ${Qt53DCore_INCLUDE_DIRS}
+                ${Qt53DAnimation_INCLUDE_DIRS}
+                ${Qt53DExtras_INCLUDE_DIRS}
+                ${Qt53DInput_INCLUDE_DIRS}
+                ${Qt53DLogic_INCLUDE_DIRS}
+                ${Qt53DQuick_INCLUDE_DIRS}
+                ${Qt53DRender_INCLUDE_DIRS}
+                ${Qt53DQuickAnimation_INCLUDE_DIRS}
+                ${Qt53DQuickExtras_INCLUDE_DIRS}
+                ${Qt53DQuickInput_INCLUDE_DIRS}
+                ${Qt53DQuickRender_INCLUDE_DIRS}
+                ${Qt53DQuickScene2D_INCLUDE_DIRS}
+                )
 
 set(QT_QTCORE_LIBRARY ${Qt5Core_LIBRARIES})
 set(QT_QTDBUS_LIBRARY ${Qt5DBus_LIBRARIES})
@@ -40,7 +89,41 @@ set(QT_QTTEST_LIBRARY ${Qt5Test_LIBRARIES})
 set(QT_QTWIDGETS_LIBRARY ${Qt5Widgets_LIBRARIES})
 set(QT_QTXML_LIBRARY ${Qt5Xml_LIBRARIES})
 
-set(QT_LIBRARIES ${QT_QTCORE_LIBRARY} ${QT_QTDBUS_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTQML_LIBRARY} ${QT_QTQUICK_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTTEST_LIBRARY} ${QT_QTWIDGETS_LIBRARY} ${QT_QTXML_LIBRARY})
+# set 3D Libaries
+set(QT_QT3DCORE_LIBRARY ${Qt53DCore_LIBRARIES})
+set(QT_QT3DANIMATION_LIBRARY ${Qt53DAnimation_LIBRARIES})
+set(QT_QT3DEXTRAS_LIBRARY ${Qt53DExtras_LIBRARIES})
+set(QT_QT3DINPUT_LIBRARY ${Qt53DInput_LIBRARIES})
+set(QT_QT3DLOGIC_LIBRARY ${Qt53DLogic_LIBRARIES})
+set(QT_QT3DQUICK_LIBRARY ${Qt53DQuick_LIBRARIES})
+set(QT_QT3DRENDER_LIBRARY ${Qt53DRender_LIBRARIES})
+set(QT_QT3DQUICKANIMATION_LIBRARY ${Qt53DQuickAnimation_LIBRARIES})
+set(QT_QT3DQUICKEXTRAS_LIBRARY ${Qt53DQuickExtras_LIBRARIES})
+set(QT_QT3DQUICKINPUT_LIBRARY ${Qt53DQuickInput_LIBRARIES})
+set(QT_QT3DQUICKRENDER_LIBRARY ${Qt53DQuickRender_LIBRARIES})
+set(QT_QT3DQUICKSCENE2D_LIBRARY ${Qt53DQuickScene2D_LIBRARIES})
+
+set(QT_LIBRARIES ${QT_QTCORE_LIBRARY}
+                 ${QT_QTDBUS_LIBRARY}
+                 ${QT_QTGUI_LIBRARY}
+                 ${QT_QTQML_LIBRARY}
+                 ${QT_QTQUICK_LIBRARY}
+                 ${QT_QTNETWORK_LIBRARY}
+                 ${QT_QTTEST_LIBRARY}
+                 ${QT_QTWIDGETS_LIBRARY}
+                 ${QT_QTXML_LIBRARY}
+                 ${QT_QT3DCORE_LIBRARY}
+                 ${QT_QT3DANIMATION_LIBRARY}
+                 ${QT_QT3DEXTRAS_LIBRARY}
+                 ${QT_QT3DLOGIC_LIBRARY}
+                 ${QT_QT3DQUICK_LIBRARY}
+                 ${QT_QT3DRENDER_LIBRARY}
+                 ${QT_QT3DQUICKANIMATION_LIBRARY}
+                 ${QT_QT3DQUICKEXTRAS_LIBRARY}
+                 ${QT_QT3DQUICKINPUT_LIBRARY}
+                 ${QT_QT3DQUICKRENDER_LIBRARY}
+                 ${QT_QT3DQUICKSCENE2D_LIBRARY}
+                 )
 
 SET(QT_VERSION_MAJOR ${Qt5Core_VERSION_MAJOR})
 SET(QT_VERSION_MINOR ${Qt5Core_VERSION_MINOR})

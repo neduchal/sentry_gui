@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.2
+import QtQuick.Scene3D 2.0
 import ros.videocomponent 1.0
 //import ros.mapcomponent 1.0
 
@@ -86,7 +87,7 @@ Window {
     }
 
 
-
+/*
     Rectangle {
         id: map_panel
         color: "gray"
@@ -136,6 +137,22 @@ Window {
         anchors.top : map_panel.top
         anchors.right : zoomPlus.left
         anchors.margins: 5
+    }
+
+*/
+
+    Scene3D {
+        id: scene3d
+        width: 700
+        height: 700
+        anchors.top : headerArea.bottom
+        anchors.left : camera_panel.right
+        anchors.margins: 15
+        focus: true
+        aspects: ["input", "logic"]
+        cameraAspectRatioMode: Scene3D.AutomaticAspectRatio
+
+        PanelRender3D{}
     }
 
     ControlPanel{}

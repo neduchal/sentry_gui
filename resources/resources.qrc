@@ -4,6 +4,8 @@
         <file>MainWindow.qml</file>
         <file>Footer.qml</file>
         <file>ControlPanel.qml</file>
+        <file>CameraController.qml</file>
+        <file>PanelRender3D.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="logo.png">images/Plzen_sit_B_RGB_pozitiv.png</file>

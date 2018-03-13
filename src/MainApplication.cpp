@@ -27,13 +27,13 @@ void MainApplication::run() {
   // Objects of ROSVideoComponent for Camera, TermoCamera and Map streams
   ROSVideoComponent *  camera = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("cameraStream"));
   ROSVideoComponent * thermo = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("thermoStream"));
-  ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
+  //ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
   //ROSMapComponent * map = this->rootObjects()[0]->findChild<ROSMapComponent*>(QString("mapStream"));
 
   // Setup of streams
   camera->setup(&nh, "/pylon_camera_node/image_raw", QImage::Format_Grayscale8, "raw"); // in the case of grayscale cam
   thermo->setup(&nh, "/thermo_topic", QImage::Format_Grayscale8, "raw");
-  map->setup(&nh, "/map_stream", QImage::Format_RGB888, "raw");
+  //map->setup(&nh, "/map_stream", QImage::Format_RGB888, "raw");
 
 
   statusSub = this->nh.subscribe<jackal_msgs::Status>("/status", 10, &MainApplication::receiveStatus, this);
