@@ -9,6 +9,8 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "guiMain");
 
+  std::cout << QT_VERSION_STR << std::endl;
+
   QApplication app(argc, argv);
 
   MainApplication engine;
