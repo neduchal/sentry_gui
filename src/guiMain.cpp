@@ -17,8 +17,6 @@ int main(int argc, char **argv)
   //ButtonClick buttonClass;
   Zoom zoomClass;
 
-  //ros::Subscriber sub = nh.subscribe<sensor_msgs::Joy>("/joy", 10, &MainApplication::receiveJoy, engine);
-  //engine->rootContext()->setContextProperty("_myClass", &buttonClass);
   engine.rootContext()->setContextProperty("_zoomClass", &zoomClass);
   engine.run();
 

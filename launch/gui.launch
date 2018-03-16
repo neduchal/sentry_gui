@@ -7,13 +7,13 @@
   <!-- Start Gui -->
   <node pkg="ground_robot_visualization_gui" type="gui" name="gui_node" output="screen" />
   <!-- Node na prevod mapy na barevny obrazek (stream) -->
-  <node pkg="map_to_image" type="converter_node" name="map_converter_node" output="screen"/>
-  <node pkg="map_to_image" type="pose_from_tf_node" name="pose_from_tf_node" output="screen"/>
+  <!--<node pkg="map_to_image" type="converter_node" name="map_converter_node" output="screen"/>
+  <node pkg="map_to_image" type="pose_from_tf_node" name="pose_from_tf_node" output="screen"/>-->
 
   <!-- Control package -->
-  <node pkg="jackal_control_package" type="control_node" name="control_node" output="screen"/>
-  <node pkg="joy" type="joy_node" name="joy_node" />
+  <!--<node pkg="jackal_control_package" type="control_node" name="control_node" output="screen"/>-->
+  <!--<node pkg="joy" type="joy_node" name="joy_node" />-->
 
-  <include file="$(find ground_robot_visualization_gui)/launch/gmapping.launch" />
+  <!--<include file="$(find ground_robot_visualization_gui)/launch/gmapping.launch" />-->
 
 </launch>

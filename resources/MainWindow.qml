@@ -143,6 +143,7 @@ Window {
 
     Scene3D {
         id: scene3d
+        objectName: "mapScene3D"
         width: 700
         height: 700
         anchors.top : headerArea.bottom

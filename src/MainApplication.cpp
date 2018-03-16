@@ -3,7 +3,7 @@
 #include <string>
 #include <QDebug>
 #include <gui/rosvideocomponent.hpp>
-//#include <gui/rosmapcomponent.hpp>
+#include <gui/rosmapentity.hpp>
 #include <QtGlobal>
 
 MainApplication::MainApplication() {
@@ -13,6 +13,7 @@ MainApplication::MainApplication() {
 void MainApplication::run() {
   // Registration of QML component
   qmlRegisterType<ROSVideoComponent>("ros.videocomponent",1,0,"ROSVideoComponent");
+  qmlRegisterType<ROSMapEntity>("ros.mapentity",1,0,"ROSMapEntity");
   //qmlRegisterType<ROSMapComponent>("ros.mapcomponent",1,0,"ROSMapComponent");
 
 
