@@ -28,7 +28,6 @@ void MainApplication::run() {
   ROSVideoComponent *  camera = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("cameraStream"));
   ROSVideoComponent * thermo = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("thermoStream"));
   ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
-  //ROSMapComponent * map = this->rootObjects()[0]->findChild<ROSMapComponent*>(QString("mapStream"));
 
   // Setup of streams
   camera->setup(&nh, "/pylon_camera_node/image_raw", QImage::Format_Grayscale8, "raw"); // in the case of grayscale cam
@@ -37,7 +36,7 @@ void MainApplication::run() {
 
 
   statusSub = this->nh.subscribe<jackal_msgs::Status>("/status", 10, &MainApplication::receiveStatus, this);
-  speedModeSub = this->nh.subscribe<std_msgs::Int32>("/jackal_speed_mode", 10, &MainApplication::receiveSpeedMode, this);
+  speedModeSub = this->nh.subscribe<std_msgs::Int32>("/jackal_control/jackal_speed_mode", 10, &MainApplication::receiveSpeedMode, this);
 
 }
 
@@ -84,15 +83,3 @@ void MainApplication::receiveSpeedMode(const std_msgs::Int32::ConstPtr& msg)
   }
   SpeedModeValue->setProperty("text", speed_mode);
 }
-
-/*
-void MainApplication::receiveJoy(const sensor_msgs::Joy::ConstPtr& msg)
-{
-  this->steering = msg->axes[0];
-  this->throttle = msg->axes[2];
-  QObject *joy = this->getQmlObject("joy");
-  joy->setProperty("text", QString::number(msg->axes[0]));
-  QObject *textJoy = this->getQmlObject("textJoy");
-  textJoy->setProperty("text", QString::number(msg->axes[2]));
-}
-*/

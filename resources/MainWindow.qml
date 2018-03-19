@@ -18,7 +18,7 @@ Window {
     id: window1
     width: 1440
     height: 900
-    //visibility: "FullScreen"    
+    //visibility: "FullScreen"
     visible: true
 
     Rectangle{
@@ -118,8 +118,8 @@ Window {
 
     Button{
         id: zoomPlus
-        width: 100
-        height: 50;
+        width: 40
+        height: 40;
         text: "+"
         onClicked:  _zoomClass.zoomPlus()
         anchors.top : map_panel.top
@@ -129,8 +129,8 @@ Window {
 
     Button{
         id: zoomMinus
-        width: 100
-        height: 50;
+        width: 40
+        height: 40;
         text: "-"
         onClicked:  _zoomClass.zoomMinus()
         anchors.top : map_panel.top
@@ -138,7 +138,7 @@ Window {
         anchors.margins: 5
     }
 
-    ControlPanel{}
+    //ControlPanel{}
 
     Rectangle{
         id: footerArea

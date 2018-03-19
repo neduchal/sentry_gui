@@ -74,7 +74,7 @@
     <!-- Initial map size -->
     <param name="ymax" value="50" />
     <!-- Resolution of the map -->
-    <param name="delta" value="0.1" />
+    <param name="delta" value="0.05" />
     <!-- Translational sampling range for the likelihood -->
     <param name="llsamplerange" value="0.01" />
     <!-- Translational sampling step for the likelihood -->
