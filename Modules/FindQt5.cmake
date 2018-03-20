@@ -4,28 +4,32 @@
 # set, and that Qt5 qmake is available via the system path.
 # This module defines a number of key variables and macros.
 
-set(Qt5Core_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Core")
-set(Qt5_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5")
-set(Qt5Gui_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Gui")
-set(Qt5Qml_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Qml")
-set(Qt5Quick_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Quick")
-set(Qt5Test_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Test")
-set(Qt5Widgets_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Widgets")
-set(Qt5Network_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Network")
-set(Qt5Xml_DIR "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake/Qt5Xml")
+
+set(QtPath "~/Qt/5.10.1/gcc_64/")
+
+set(Qt5Core_DIR  "${QtPath}lib/cmake/Qt5Core")
+set(Qt5_DIR  "${QtPath}lib/cmake/Qt5")
+set(Qt5DBus_DIR  "${QtPath}lib/cmake/Qt5DBus")
+set(Qt5Gui_DIR  "${QtPath}lib/cmake/Qt5Gui")
+set(Qt5Qml_DIR  "${QtPath}lib/cmake/Qt5Qml")
+set(Qt5Quick_DIR  "${QtPath}lib/cmake/Qt5Quick")
+set(Qt5Test_DIR  "${QtPath}lib/cmake/Qt5Test")
+set(Qt5Widgets_DIR  "${QtPath}lib/cmake/Qt5Widgets")
+set(Qt5Network_DIR  "${QtPath}lib/cmake/Qt5Network")
+set(Qt5Xml_DIR  "${QtPath}lib/cmake/Qt5Xml")
 
 
-SET(QT_QMAKE_EXECUTABLE "/home/neduchal/Qt/5.10.1/gcc_64/bin/qmake")
+SET(QT_QMAKE_EXECUTABLE  "${QtPath}bin/qmake")
 
-find_package(Qt5Core ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5DBus ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Gui ${REQUIRED_QT_VERSION} PATHS  "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Qml ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Quick ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Test ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Widgets ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Network ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
-find_package(Qt5Xml ${REQUIRED_QT_VERSION} PATHS "/home/neduchal/Qt/5.10.1/gcc_64/lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Core ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5DBus ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Gui ${REQUIRED_QT_VERSION} PATHS   "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Qml ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Quick ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Test ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Widgets ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Network ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
+find_package(Qt5Xml ${REQUIRED_QT_VERSION} PATHS  "${QtPath}lib/cmake" NO_DEFAULT_PATH)
 
 # Copy includes and library names into the same style as pkgconfig used for Qt4
 set(QT_INCLUDES ${Qt5Core_INCLUDE_DIRS} ${Qt5DBus_INCLUDE_DIRS} ${Qt5Gui_INCLUDE_DIRS} ${Qt5Qml_INCLUDE_DIRS} ${Qt5Quick_INCLUDE_DIRS} ${Qt5Network_INCLUDE_DIRS} ${Qt5Test_INCLUDE_DIRS} ${Qt5Widgets_INCLUDE_DIRS})
