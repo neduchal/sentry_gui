@@ -2,7 +2,6 @@ import QtQuick 2.5
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.2
 import ros.videocomponent 1.0
-//import ros.mapcomponent 1.0
 
 
 Window {
@@ -14,6 +13,8 @@ Window {
     property string panelColor : "#fcf8e3"
     property string panelTextColor : "#07ABBC"
     property string panelBorderColor : "#07ABBC"
+    property string whiteColor : "#FFFFFF"
+
 
     id: window1
     width: 1440
@@ -31,14 +32,126 @@ Window {
         }
     }
 
+    Rectangle{
+        id: mapControlPanel
+        height: 40
+        anchors.top: headerArea.bottom
+        anchors.left: map_panel.left
+        anchors.right:map_panel.right
+        color: whiteColor
+
+
+        Rectangle{
+            id: zoomPlus
+            width: 40
+            height: 40
+            color: panelTextColor
+            anchors.top : parent.top
+            anchors.right : parent.right
+            antialiasing: true
+            Text{
+                id: zoomPlusText
+                text: "+"
+                anchors.centerIn: parent
+                font.pixelSize: parent.height * .5
+                color: whiteColor
+                styleColor : whiteColor
+            }
+            MouseArea{
+                anchors.fill: parent
+                hoverEnabled: true
+                acceptedButtons: Qt.LeftButton
+                onClicked:  _zoomClass.zoomPlus()
+                onEntered:  { parent.color = panelColor;
+                              zoomPlusText.color = panelTextColor;
+                              zoomPlusText.styleColor = panelTextColor;}
+                onExited:  { parent.color = panelTextColor;
+                             zoomPlusText.color = whiteColor;
+                             zoomPlusText.styleColor = whiteColor;}
+            }
+        }
+
+        Rectangle{
+            id: zoomMinus
+            width: 40
+            height: 40
+            color: panelTextColor
+            anchors.top : parent.top
+            anchors.right : zoomPlus.left
+            antialiasing: true
+            Text{
+                id: zoomMinusText
+                text: "-"
+                anchors.centerIn: parent
+                font.pixelSize: parent.height * .5
+                color: whiteColor
+                styleColor : whiteColor
+            }
+            MouseArea{
+                anchors.fill: parent
+                hoverEnabled: true
+                acceptedButtons: Qt.LeftButton
+                onClicked:  _zoomClass.zoomMinus()
+                onEntered:  { parent.color = panelColor;
+                              zoomMinusText.color = panelTextColor;
+                              zoomMinusText.styleColor = panelTextColor;}
+                onExited:  { parent.color = panelTextColor;
+                             zoomMinusText.color = whiteColor;
+                             zoomMinusText.styleColor = whiteColor;}
+            }
+        }
+
+    }
+
+    Rectangle{
+        id: cameraControlPanel
+        height: 40
+        anchors.top: headerArea.bottom
+        anchors.left: camera_panel.left
+        anchors.right:camera_panel.right
+        color: whiteColor
+
+        Rectangle{
+            id: takePhoto
+            width: 60
+            height: 40
+            color: panelTextColor
+            anchors.top : parent.top
+            anchors.right : parent.right
+            antialiasing: true
+            Text{
+                id: takePhotoText
+                text: "Photo"
+                anchors.centerIn: parent
+                //font.pixelSize: parent.height * .5
+                color: whiteColor
+                styleColor : whiteColor
+            }
+            MouseArea{
+                anchors.fill: parent
+                hoverEnabled: true
+                acceptedButtons: Qt.LeftButton
+                onClicked:  _photoClass.takePhoto()
+                onEntered:  { parent.color = panelColor;
+                              takePhotoText.color = panelTextColor;
+                              takePhotoText.styleColor = panelTextColor;}
+                onExited:  { parent.color = panelTextColor;
+                             takePhotoText.color = whiteColor;
+                             takePhotoText.styleColor = whiteColor;}
+            }
+        }
+    }
+
+
     Rectangle {
         id: camera_panel
         color: "black"
         width: 640
         height: 480
         anchors.top : headerArea.bottom
-        anchors.left : parent.left
+        anchors.left : map_panel.right
         anchors.margins: 15
+        anchors.topMargin: 40
         ROSVideoComponent {
             // @disable-check M16
             objectName: "cameraStream"
@@ -59,16 +172,6 @@ Window {
     }
 
 
-    Button{
-        id: takePhoto
-        width: 60
-        height: 30;
-        text: "Photo"
-        onClicked:  _photoClass.takePhoto()
-        anchors.top : camera_panel.top
-        anchors.right : camera_panel.right
-        anchors.margins: 5
-    }
 
 
     Rectangle {
@@ -106,8 +209,9 @@ Window {
         width: 700
         height: 700
         anchors.top : headerArea.bottom
-        anchors.left : camera_panel.right
+        anchors.left : parent.left
         anchors.margins: 15
+        anchors.topMargin: 40
         ROSVideoComponent {
             // @disable-check M16
             objectName: "mapStream"
@@ -128,7 +232,7 @@ Window {
             //topic: "/wide_stereo/left/image_raw"
         }
     }
-
+/*
     Button{
         id: zoomPlus
         width: 40
@@ -152,7 +256,7 @@ Window {
     }
 
     //ControlPanel{}
-
+*/
     Rectangle{
         id: footerArea
         height: 40
