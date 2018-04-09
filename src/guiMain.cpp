@@ -4,6 +4,8 @@
 #include <QQmlContext>
 #include <gui/MainApplication.hpp>
 #include <gui/zoom.hpp>
+#include <gui/photo.hpp>
+
 
 int main(int argc, char **argv)
 {
@@ -16,10 +18,13 @@ int main(int argc, char **argv)
   MainApplication engine;
   //ButtonClick buttonClass;
   Zoom zoomClass;
+  Photo photoClass;
 
   //ros::Subscriber sub = nh.subscribe<sensor_msgs::Joy>("/joy", 10, &MainApplication::receiveJoy, engine);
   //engine->rootContext()->setContextProperty("_myClass", &buttonClass);
   engine.rootContext()->setContextProperty("_zoomClass", &zoomClass);
+  engine.rootContext()->setContextProperty("_photoClass", &photoClass);
+
   engine.run();
 
   return app.exec();

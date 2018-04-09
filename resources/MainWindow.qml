@@ -8,7 +8,7 @@ import ros.videocomponent 1.0
 Window {
 
     // Properties
-    property string appTitle : "Ground robot visualization GUI"
+    property string appTitle : "Jackal robot GUI"
     property string appLogo : "qrc:///images/logo.png"
     // Colors
     property string panelColor : "#fcf8e3"
@@ -57,6 +57,19 @@ Window {
             //topic: "/wide_stereo/left/image_raw"
         }
     }
+
+
+    Button{
+        id: takePhoto
+        width: 60
+        height: 30;
+        text: "Photo"
+        onClicked:  _photoClass.takePhoto()
+        anchors.top : camera_panel.top
+        anchors.right : camera_panel.right
+        anchors.margins: 5
+    }
+
 
     Rectangle {
         id: thermo_panel
