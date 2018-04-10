@@ -151,6 +151,7 @@ Rectangle{
         }
     }
 
+    // LEFT
     Rectangle{
         id: setGoal
         width: 100
@@ -175,6 +176,32 @@ Rectangle{
                           setGoalText.color = panelTextColor;}
             onExited:  { parent.color = panelTextColor;
                          setGoalText.color = whiteColor;}
+        }
+    }
+
+    Rectangle{
+        id: setReturn
+        width: 80
+        height: 40
+        color: panelTextColor
+        anchors.top : parent.top
+        anchors.left : setGoal.right
+        antialiasing: true
+        Text{
+            id: setReturnText
+            text: "Návrat"
+            anchors.centerIn: parent
+            color: whiteColor
+        }
+        MouseArea{
+            anchors.fill: parent
+            hoverEnabled: true
+            acceptedButtons: Qt.LeftButton
+            //onClicked:  _zoomClass.zoomMinus()
+            onEntered:  { parent.color = panelColor;
+                          setReturnText.color = panelTextColor;}
+            onExited:  { parent.color = panelTextColor;
+                         setReturnText.color = whiteColor;}
         }
     }
 

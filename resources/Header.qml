@@ -6,8 +6,8 @@ Rectangle{
 
     Image {
         id: logoImage
-        height: 50
-        width: 303
+        height: 90
+        width: 270
         source: appLogo
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter

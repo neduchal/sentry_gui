@@ -33,6 +33,10 @@
     <param name="topic/map" type="str" value="$(arg map_topic)" />
     <param name="topic/pose" type="str" value="$(arg pose_topic)" />
     <param name="topic/tile_size" type="str" value="$(arg tile_size_topic)" />
+    <param name="general/tile_size" type="double" value="6.0" />
+    <param name="general/min_tile_size" type="double" value="4.0" />
+    <param name="output/width" type="int" value="750" />
+    <param name="ouptut/height" type="int" value="750" />
   </node>
 
   <node pkg="map_to_image" type="pose_from_tf_node" name="pose_from_tf" output="screen">

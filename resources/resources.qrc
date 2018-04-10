@@ -6,6 +6,6 @@
         <file>MapControlPanel.qml</file>
     </qresource>
     <qresource prefix="/images">
-        <file alias="logo.png">images/Plzen_sit_B_RGB_pozitiv.png</file>
+        <file alias="logo.png">images/logo.png</file>
     </qresource>
 </RCC>
