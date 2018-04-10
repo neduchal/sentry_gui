@@ -28,8 +28,7 @@ Window {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right:parent.right
-        Header{
-        }
+        Header{}
     }
 
     Rectangle{
@@ -39,68 +38,7 @@ Window {
         anchors.left: map_panel.left
         anchors.right:map_panel.right
         color: whiteColor
-
-
-        Rectangle{
-            id: zoomPlus
-            width: 40
-            height: 40
-            color: panelTextColor
-            anchors.top : parent.top
-            anchors.right : parent.right
-            antialiasing: true
-            Text{
-                id: zoomPlusText
-                text: "+"
-                anchors.centerIn: parent
-                font.pixelSize: parent.height * .5
-                color: whiteColor
-                styleColor : whiteColor
-            }
-            MouseArea{
-                anchors.fill: parent
-                hoverEnabled: true
-                acceptedButtons: Qt.LeftButton
-                onClicked:  _zoomClass.zoomPlus()
-                onEntered:  { parent.color = panelColor;
-                              zoomPlusText.color = panelTextColor;
-                              zoomPlusText.styleColor = panelTextColor;}
-                onExited:  { parent.color = panelTextColor;
-                             zoomPlusText.color = whiteColor;
-                             zoomPlusText.styleColor = whiteColor;}
-            }
-        }
-
-        Rectangle{
-            id: zoomMinus
-            width: 40
-            height: 40
-            color: panelTextColor
-            anchors.top : parent.top
-            anchors.right : zoomPlus.left
-            antialiasing: true
-            Text{
-                id: zoomMinusText
-                text: "-"
-                anchors.centerIn: parent
-                font.pixelSize: parent.height * .5
-                color: whiteColor
-                styleColor : whiteColor
-            }
-            MouseArea{
-                anchors.fill: parent
-                hoverEnabled: true
-                acceptedButtons: Qt.LeftButton
-                onClicked:  _zoomClass.zoomMinus()
-                onEntered:  { parent.color = panelColor;
-                              zoomMinusText.color = panelTextColor;
-                              zoomMinusText.styleColor = panelTextColor;}
-                onExited:  { parent.color = panelTextColor;
-                             zoomMinusText.color = whiteColor;
-                             zoomMinusText.styleColor = whiteColor;}
-            }
-        }
-
+        MapControlPanel{}
     }
 
     Rectangle{
@@ -121,9 +59,8 @@ Window {
             antialiasing: true
             Text{
                 id: takePhotoText
-                text: "Photo"
+                text: "Vyfotit"
                 anchors.centerIn: parent
-                //font.pixelSize: parent.height * .5
                 color: whiteColor
                 styleColor : whiteColor
             }
@@ -173,7 +110,7 @@ Window {
 
 
 
-
+/*
     Rectangle {
         id: thermo_panel
         color: "black"
@@ -201,7 +138,7 @@ Window {
         }
     }
 
-
+*/
 
     Rectangle {
         id: map_panel

@@ -13,8 +13,6 @@ MainApplication::MainApplication() {
 void MainApplication::run() {
   // Registration of QML component
   qmlRegisterType<ROSVideoComponent>("ros.videocomponent",1,0,"ROSVideoComponent");
-  //qmlRegisterType<ROSMapComponent>("ros.mapcomponent",1,0,"ROSMapComponent");
-
 
   //this loads the qml file we are about to create
   this->load(QUrl(QStringLiteral("qrc:/qml/MainWindow.qml")));
@@ -26,12 +24,12 @@ void MainApplication::run() {
 
   // Objects of ROSVideoComponent for Camera, TermoCamera and Map streams
   ROSVideoComponent *  camera = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("cameraStream"));
-  ROSVideoComponent * thermo = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("thermoStream"));
+  //ROSVideoComponent * thermo = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("thermoStream"));
   ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
 
   // Setup of streams
   camera->setup(&nh, "/pylon_camera_node/image_raw", QImage::Format_Grayscale8, "raw"); // in the case of grayscale cam
-  thermo->setup(&nh, "/thermo_topic", QImage::Format_Grayscale8, "raw");
+  //thermo->setup(&nh, "/thermo_topic", QImage::Format_Grayscale8, "raw");
   map->setup(&nh, "/map_stream", QImage::Format_RGB888, "raw");
 
 
