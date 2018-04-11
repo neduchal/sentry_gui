@@ -30,7 +30,7 @@
   </node>
 
   <!-- Node na prevod mapy na barevny obrazek (stream) -->
-  <node pkg="map_to_image" type="converter_node" name="map_converter" output="screen">
+  <node pkg="sentry_map_stream" type="converter_node" name="map_stream" output="screen">
     <param name="topic/map" type="str" value="$(arg map_topic)" />
     <param name="topic/pose" type="str" value="$(arg pose_topic)" />
     <param name="topic/tile_size" type="str" value="$(arg tile_size_topic)" />
@@ -40,14 +40,14 @@
     <param name="ouptut/height" type="int" value="750" />
   </node>
 
-  <node pkg="map_to_image" type="pose_from_tf_node" name="pose_from_tf" output="screen">
+  <node pkg="sentry_map_stream" type="pose_from_tf_node" name="pose_from_tf" output="screen">
     <param name="topic/pose" type="str" value="$(arg pose_topic)" />
     <param name="frame/map" type="str" value="map" />
     <param name="frame/base" type="str" value="base_link" />
   </node>
 
   <!-- Control package -->
-  <node pkg="sitmp_jackal_control" type="control_node" name="control_node" output="screen">
+  <node pkg="sentry_control" type="control_node" name="control_node" output="screen">
     <param name="topic/speed_mode" type="str" value="$(arg speed_mode_topic)" />
     <param name="topic/control" type="str" value="$(arg control_topic)" />
     <param name="topic/joy" type="str" value="$(arg joy_topic)" />
@@ -61,6 +61,6 @@
 
   <node pkg="joy" type="joy_node" name="joy_node" />
 
-  <include file="$(find ground_robot_visualization_gui)/launch/gmapping.launch" />
+  <include file="$(find sentry_gui)/launch/gmapping.launch" />
 
 </launch>

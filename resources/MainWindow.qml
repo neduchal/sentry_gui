@@ -7,7 +7,7 @@ import ros.videocomponent 1.0
 Window {
 
     // Properties
-    property string appTitle : "Robot GUI"
+    property string appTitle : "Sentry GUI"
     property string appLogo : "qrc:///images/logo.png"
     // Colors
     property string panelColor : "#fcf8e3"
