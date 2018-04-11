@@ -11,6 +11,13 @@ MainApplication::MainApplication() {
 }
 
 void MainApplication::run() {
+  // Param load
+  n.param<std::string>(ros::this_node::getName()+"/topic/map_stream_topic", map_stream_topic, "/map_stream");
+  n.param<std::string>(ros::this_node::getName()+"/topic/camera_topic", camera_topic, "/camera_topic");
+  n.param<std::string>(ros::this_node::getName()+"/topic/speed_mode", speed_mode_topic, "/speed_mode");
+  n.param<std::string>(ros::this_node::getName()+"/topic/jackal_status", jackal_status_topic, "/status");
+
+
   // Registration of QML component
   qmlRegisterType<ROSVideoComponent>("ros.videocomponent",1,0,"ROSVideoComponent");
 
@@ -28,13 +35,12 @@ void MainApplication::run() {
   ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
 
   // Setup of streams
-  camera->setup(&nh, "/pylon_camera_node/image_raw", QImage::Format_Grayscale8, "raw"); // in the case of grayscale cam
-  //thermo->setup(&nh, "/thermo_topic", QImage::Format_Grayscale8, "raw");
-  map->setup(&nh, "/map_stream", QImage::Format_RGB888, "raw");
+  camera->setup(&n, camera_topic, QImage::Format_Grayscale8, "raw"); // in the case of grayscale cam
+  //thermo->setup(&n, "/thermo_topic", QImage::Format_Grayscale8, "raw");
+  map->setup(&n, map_stream_topic, QImage::Format_RGB888, "raw");
 
-
-  statusSub = this->nh.subscribe<jackal_msgs::Status>("/status", 10, &MainApplication::receiveStatus, this);
-  speedModeSub = this->nh.subscribe<std_msgs::Int32>("/jackal_control/jackal_speed_mode", 10, &MainApplication::receiveSpeedMode, this);
+  statusSub = this->n.subscribe<jackal_msgs::Status>(jackal_status_topic, 10, &MainApplication::receiveStatus, this);
+  speedModeSub = this->n.subscribe<std_msgs::Int32>(speed_mode_topic, 10, &MainApplication::receiveSpeedMode, this);
 
 }
 

@@ -17,9 +17,10 @@
 
   <!-- Start Gui -->
   <node pkg="ground_robot_visualization_gui" type="gui" name="gui" output="screen"  required="true">
-    <param name="map_topic" type="str" value="$(arg map_topic)" />
-    <param name="camera_topic" type="str" value="$(arg camera_topic)" />
-    <param name="speed_mode_topic" type="str" value="$(arg speed_mode_topic)" />
+    <param name="topic/map" type="str" value="$(arg map_topic)" />
+    <param name="topic/camera" type="str" value="$(arg camera_topic)" />
+    <param name="topic/speed_mode" type="str" value="$(arg speed_mode_topic)" />
+    <param name="topic/jackal_status" type="str" value="/status" />
     <param name="image_panel/width" type="int" value="640" />
     <param name="image_panel/height" type="int" value="480" />
     <param name="map_panel/width" type="int" value="750" />

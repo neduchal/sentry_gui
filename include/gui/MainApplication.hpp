@@ -29,12 +29,16 @@ class MainApplication : public QQmlApplicationEngine {
         void mainLoop();
 
    private:
-        ros::NodeHandle nh;
+        ros::NodeHandle n;
         ros::Subscriber statusSub;
         ros::Subscriber speedModeSub;
         float steering;
         float throttle;
 
+        std::string map_stream_topic;
+        std::string camera_topic;
+        std::string speed_mode_topic;
+        std::string jackal_status_topic;
 
 };
 
