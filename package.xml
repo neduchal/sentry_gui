@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
-  <name>ground_robot_visualization_gui</name>
-  <version>0.1.0</version>
+  <name>sentry_gui</name>
+  <version>0.2.0</version>
   <description>ROS package for ground robot GUI app in QML</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->

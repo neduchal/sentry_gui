@@ -16,7 +16,7 @@
   <!--<param name="/use_sim_time" value="true"/>-->
 
   <!-- Start Gui -->
-  <node pkg="ground_robot_visualization_gui" type="gui" name="gui" output="screen"  required="true">
+  <node pkg="sentry_gui" type="gui" name="gui" output="screen"  required="true">
     <param name="topic/map" type="str" value="$(arg map_topic)" />
     <param name="topic/camera" type="str" value="$(arg camera_topic)" />
     <param name="topic/speed_mode" type="str" value="$(arg speed_mode_topic)" />
