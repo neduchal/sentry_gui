@@ -205,4 +205,39 @@ Rectangle{
         }
     }
 
+    Rectangle{
+        id: scale
+        width: 80
+        height: 40
+        color: panelColor
+        anchors.top : parent.top
+        anchors.right : photoLayer.left
+        antialiasing: true
+        Text{
+            id: scaleText
+            text: "Měřítko mapy:"
+            anchors.centerIn: parent
+            color: panelTextColor
+            styleColor : panelTextColor
+        }
+    }
+
+    Rectangle{
+        id: scaleValue
+        width: 40
+        height: 40
+        color: panelColor
+        anchors.top : parent.top
+        anchors.right : photoLayer.left
+        antialiasing: true
+        Text{
+            id: scaleValueText
+            objectName: "mapScaleValue";            
+            text: "0.0"
+            anchors.centerIn: parent
+            color: panelTextColor
+            styleColor : panelTextColor
+        }
+    }
+
 }

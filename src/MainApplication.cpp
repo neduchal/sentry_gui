@@ -13,6 +13,7 @@ MainApplication::MainApplication() {
 void MainApplication::run() {
   // Param load
   n.param<std::string>(ros::this_node::getName()+"/topic/map_stream_topic", map_stream_topic, "/map_stream");
+  n.param<std::string>(ros::this_node::getName()+"/topic/map_scale_topic", map_scale_topic, "/map_scale");
   n.param<std::string>(ros::this_node::getName()+"/topic/camera_topic", camera_topic, "/camera_topic");
   n.param<std::string>(ros::this_node::getName()+"/topic/speed_mode", speed_mode_topic, "/speed_mode");
   n.param<std::string>(ros::this_node::getName()+"/topic/jackal_status", jackal_status_topic, "/status");
@@ -44,6 +45,7 @@ void MainApplication::run() {
 
   statusSub = this->n.subscribe<jackal_msgs::Status>(jackal_status_topic, 10, &MainApplication::receiveStatus, this);
   speedModeSub = this->n.subscribe<std_msgs::Int32>(speed_mode_topic, 10, &MainApplication::receiveSpeedMode, this);
+  map_scale_subscriber = this->n.subscribe<std_msgs::Float32>(map_scale_topic, 10, &MainApplication::receiveMapScale, this);
 
 }
 
@@ -74,7 +76,7 @@ void MainApplication::receiveStatus(const jackal_msgs::Status::ConstPtr& msg)
   } else {
     batteryVoltageValue->setProperty("color", "#AA0000");
   }
-  
+
 }
 
 void MainApplication::receiveSpeedMode(const std_msgs::Int32::ConstPtr& msg)
@@ -102,4 +104,9 @@ void MainApplication::receiveSpeedMode(const std_msgs::Int32::ConstPtr& msg)
     break;
   }
   SpeedModeValue->setProperty("text", speed_mode);
+}
+
+void MainApplication::receiveMapScale(const std_msgs::Float32::ConstPtr& msg) {
+  QObject *SpeedModeValue = this->getQmlObject("mapScaleValue");
+  batteryVoltageValue->setProperty("text", QString::number(msg->data));
 }

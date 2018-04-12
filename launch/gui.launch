@@ -8,6 +8,8 @@
   <arg name="tile_size_topic" default="/map_tile_size" />
   <arg name="pose_topic" default="/pose_from_tf" />
   <arg name="map_topic" default="/map" />
+  <arg name="map_stream_topic" default="/map" />
+  <arg name="map_scale_topic" default="/map" />
   <arg name="camera_topic" default="/pylon_camera_node/image_raw" />
   <arg name="speed_mode_topic" default="/speed_mode" />
   <arg name="control_topic" default="/cmd_vel" />
@@ -17,7 +19,8 @@
 
   <!-- Start Gui -->
   <node pkg="sentry_gui" type="gui" name="gui" output="screen"  required="true">
-    <param name="topic/map" type="str" value="$(arg map_topic)" />
+    <param name="topic/map_stream" type="str" value="$(arg map_stream_topic)" />
+    <param name="topic/map_scale" type="str" value="$(arg map_scale_topic)" />
     <param name="topic/camera" type="str" value="$(arg camera_topic)" />
     <param name="topic/speed_mode" type="str" value="$(arg speed_mode_topic)" />
     <param name="topic/jackal_status" type="str" value="/status" />
@@ -29,12 +32,14 @@
     <param name="layers/navigation" type="bool" value="false" />
     <param name="battery/full" type="double" value="30.0" />
     <param name="battery/low" type="double" value="24.0" />
-    <param name="battery/critical" type="double" value="20.0" />    
+    <param name="battery/critical" type="double" value="20.0" />
   </node>
 
   <!-- Node na prevod mapy na barevny obrazek (stream) -->
   <node pkg="sentry_map_stream" type="converter_node" name="map_stream" output="screen">
     <param name="topic/map" type="str" value="$(arg map_topic)" />
+    <param name="topic/map_stream" type="str" value="$(arg map_stream_topic)" />
+    <param name="topic/map_scale" type="str" value="$(arg map_scale_topic)" />    
     <param name="topic/pose" type="str" value="$(arg pose_topic)" />
     <param name="topic/tile_size" type="str" value="$(arg tile_size_topic)" />
     <param name="general/tile_size" type="double" value="6.0" />

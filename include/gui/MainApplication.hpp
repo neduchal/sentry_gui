@@ -21,6 +21,7 @@ class MainApplication : public QQmlApplicationEngine {
         void receiveJoy(const sensor_msgs::Joy::ConstPtr& msg);
         void receiveStatus(const jackal_msgs::Status::ConstPtr& msg);
         void receiveSpeedMode(const std_msgs::Int32::ConstPtr& msg);
+        void receiveMapScale(const std_msgs::Float32::ConstPtr& msg);
 
         QObject * getQmlObject(const QString &objectName);
 
@@ -32,10 +33,12 @@ class MainApplication : public QQmlApplicationEngine {
         ros::NodeHandle n;
         ros::Subscriber statusSub;
         ros::Subscriber speedModeSub;
+        ros::Subscriber map_scale_subscriber;
         float steering;
         float throttle;
 
         std::string map_stream_topic;
+        std::string map_scale_subscriber;
         std::string camera_topic;
         std::string speed_mode_topic;
         std::string jackal_status_topic;
