@@ -34,14 +34,21 @@ class MainApplication : public QQmlApplicationEngine {
         ros::Subscriber statusSub;
         ros::Subscriber speedModeSub;
         ros::Subscriber map_scale_subscriber;
+        ros::Publisher map_layers_publisher;
         float steering;
         float throttle;
 
         std::string map_stream_topic;
-        std::string map_scale_subscriber;
+        std::string map_layers_topic;
+        std::string map_scale_topic;
         std::string camera_topic;
         std::string speed_mode_topic;
         std::string jackal_status_topic;
+
+        int map_layers_status;
+
+        int layer_photo;
+        int layer_navigation;
 
         double battery_full;
         double battery_low;

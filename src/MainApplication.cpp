@@ -14,6 +14,7 @@ void MainApplication::run() {
   // Param load
   n.param<std::string>(ros::this_node::getName()+"/topic/map_stream_topic", map_stream_topic, "/map_stream");
   n.param<std::string>(ros::this_node::getName()+"/topic/map_scale_topic", map_scale_topic, "/map_scale");
+  n.param<std::string>(ros::this_node::getName()+"/topic/map_layers_topic", map_stream_topic, "/map_layers");
   n.param<std::string>(ros::this_node::getName()+"/topic/camera_topic", camera_topic, "/camera_topic");
   n.param<std::string>(ros::this_node::getName()+"/topic/speed_mode", speed_mode_topic, "/speed_mode");
   n.param<std::string>(ros::this_node::getName()+"/topic/jackal_status", jackal_status_topic, "/status");
@@ -21,6 +22,9 @@ void MainApplication::run() {
   n.param<float>(ros::this_node::getName()+"/battery/full", battery_full, 30.0);
   n.param<float>(ros::this_node::getName()+"/battery/low", battery_low, 24.0);
   n.param<float>(ros::this_node::getName()+"/battery/critical", battery_critical, 20.0);
+
+  n.param<int>(ros::this_node::getName()+"/layer/photo", layer_photo, 0);
+  n.param<int>(ros::this_node::getName()+"/layer/navigation", layer_navigation, 0);
 
   // Registration of QML component
   qmlRegisterType<ROSVideoComponent>("ros.videocomponent",1,0,"ROSVideoComponent");
@@ -46,7 +50,11 @@ void MainApplication::run() {
   statusSub = this->n.subscribe<jackal_msgs::Status>(jackal_status_topic, 10, &MainApplication::receiveStatus, this);
   speedModeSub = this->n.subscribe<std_msgs::Int32>(speed_mode_topic, 10, &MainApplication::receiveSpeedMode, this);
   map_scale_subscriber = this->n.subscribe<std_msgs::Float32>(map_scale_topic, 10, &MainApplication::receiveMapScale, this);
+  map_publisher = n.advertise<std_msgs::Int32>(map_layers_topic, 10);
 
+  map_layers_status = (layer_photo) | ( layer_navigation << 1);
+
+  // TODO: PUBLISH MAP LAYERS STATUS 
 }
 
 void MainApplication::mainLoop() {

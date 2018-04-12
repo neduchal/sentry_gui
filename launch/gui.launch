@@ -28,8 +28,8 @@
     <param name="image_panel/height" type="int" value="480" />
     <param name="map_panel/width" type="int" value="750" />
     <param name="map_panel/height" type="int" value="750" />
-    <param name="layers/photo" type="bool" value="false" />
-    <param name="layers/navigation" type="bool" value="false" />
+    <param name="layers/photo" type="int" value="0" />
+    <param name="layers/navigation" type="int" value="0" />
     <param name="battery/full" type="double" value="30.0" />
     <param name="battery/low" type="double" value="24.0" />
     <param name="battery/critical" type="double" value="20.0" />
@@ -39,7 +39,7 @@
   <node pkg="sentry_map_stream" type="converter_node" name="map_stream" output="screen">
     <param name="topic/map" type="str" value="$(arg map_topic)" />
     <param name="topic/map_stream" type="str" value="$(arg map_stream_topic)" />
-    <param name="topic/map_scale" type="str" value="$(arg map_scale_topic)" />    
+    <param name="topic/map_scale" type="str" value="$(arg map_scale_topic)" />
     <param name="topic/pose" type="str" value="$(arg pose_topic)" />
     <param name="topic/tile_size" type="str" value="$(arg tile_size_topic)" />
     <param name="general/tile_size" type="double" value="6.0" />
