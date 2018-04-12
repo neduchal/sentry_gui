@@ -40,6 +40,10 @@ class MainApplication : public QQmlApplicationEngine {
         std::string speed_mode_topic;
         std::string jackal_status_topic;
 
+        double battery_full;
+        double battery_low;
+        double battery_critical;
+
 };
 
 #endif // MAINAPPLICATION_H

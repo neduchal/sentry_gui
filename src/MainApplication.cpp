@@ -17,6 +17,9 @@ void MainApplication::run() {
   n.param<std::string>(ros::this_node::getName()+"/topic/speed_mode", speed_mode_topic, "/speed_mode");
   n.param<std::string>(ros::this_node::getName()+"/topic/jackal_status", jackal_status_topic, "/status");
 
+  n.param<float>(ros::this_node::getName()+"/battery/full", battery_full, 30.0);
+  n.param<float>(ros::this_node::getName()+"/battery/low", battery_low, 24.0);
+  n.param<float>(ros::this_node::getName()+"/battery/critical", battery_critical, 20.0);
 
   // Registration of QML component
   qmlRegisterType<ROSVideoComponent>("ros.videocomponent",1,0,"ROSVideoComponent");
@@ -57,8 +60,21 @@ QObject * MainApplication::getQmlObject(const QString &objectName)
 
 void MainApplication::receiveStatus(const jackal_msgs::Status::ConstPtr& msg)
 {
+  float battery_voltage_value = msg->measured_battery;
+  float battery_voltage_percent = 0.0;
+
+  battery_voltage_percent = 100.0 * ((battery_voltage_value - (battery_critical - 2)) / (battery_full - (battery_critical - 2)))
+
   QObject *batteryVoltageValue = this->getQmlObject("batteryVoltageValue");
-  batteryVoltageValue->setProperty("text", QString::number(msg->measured_battery));
+  batteryVoltageValue->setProperty("text", QString::number(battery_voltage_percent));
+  if (battery_voltage_value > battery_low) {
+    batteryVoltageValue->setProperty("color", "#00AA00");
+  } else if ((battery_voltage_value <= battery_low) && (battery_voltage_value > battery_critical)) {
+    batteryVoltageValue->setProperty("color", "#FFA500");
+  } else {
+    batteryVoltageValue->setProperty("color", "#AA0000");
+  }
+  
 }
 
 void MainApplication::receiveSpeedMode(const std_msgs::Int32::ConstPtr& msg)
