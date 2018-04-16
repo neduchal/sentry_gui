@@ -3,15 +3,24 @@
 #include <string>
 #include <QDebug>
 #include <gui/rosvideocomponent.hpp>
-//#include <gui/rosmapcomponent.hpp>
 #include <QtGlobal>
 
-MainApplication::MainApplication() {
+/**
+ * @brief MainApplication::MainApplication
+ *
+ * Konstruktor třídy MainApplication
+ */
 
-}
+MainApplication::MainApplication() {}
 
+/**
+ * @brief MainApplication::run
+ *
+ * Nastaveni a spusteni aplikace
+ */
 void MainApplication::run() {
-  // Param load
+  // Nacteni ROS parametru
+  // Nastaveni topicu
   n.param<std::string>(ros::this_node::getName()+"/topic/map_stream_topic", map_stream_topic, "/map_stream");
   n.param<std::string>(ros::this_node::getName()+"/topic/map_scale_topic", map_scale_topic, "/map_scale");
   n.param<std::string>(ros::this_node::getName()+"/topic/map_layers_topic", map_stream_topic, "/map_layers");
@@ -19,48 +28,64 @@ void MainApplication::run() {
   n.param<std::string>(ros::this_node::getName()+"/topic/speed_mode", speed_mode_topic, "/speed_mode");
   n.param<std::string>(ros::this_node::getName()+"/topic/jackal_status", jackal_status_topic, "/status");
 
+  // Nastaveni rozsahu baterie pro prepocet z voltu na procenta
   n.param<double>(ros::this_node::getName()+"/battery/full", battery_full, 30.0);
   n.param<double>(ros::this_node::getName()+"/battery/low", battery_low, 24.0);
   n.param<double>(ros::this_node::getName()+"/battery/critical", battery_critical, 20.0);
 
+  // Nastaveni zobrazeni layeru v mape (defaultne vypnute)
   n.param<int>(ros::this_node::getName()+"/layer/photo", layer_photo, 0);
   n.param<int>(ros::this_node::getName()+"/layer/navigation", layer_navigation, 0);
 
-  // Registration of QML component
+  //  Registrace QML komponenty pro video stream v GUI
   qmlRegisterType<ROSVideoComponent>("ros.videocomponent",1,0,"ROSVideoComponent");
 
-  //this loads the qml file we are about to create
+  // nacteni QML aplikace
   this->load(QUrl(QStringLiteral("qrc:/qml/MainWindow.qml")));
 
-  //Setup a timer to get the application's idle loop
+  // NAstaveni timeru pro aplikacni smycku
   QTimer *timer = new QTimer(this);
   connect(timer, SIGNAL(timeout()), this, SLOT(mainLoop()));
   timer->start(0);
 
-  // Objects of ROSVideoComponent for Camera, TermoCamera and Map streams
+  // Objekty video-komponenty pro kameru, (termokameru) a mapu
   ROSVideoComponent *  camera = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("cameraStream"));
   //ROSVideoComponent * thermo = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("thermoStream"));
   ROSVideoComponent * map = this->rootObjects()[0]->findChild<ROSVideoComponent*>(QString("mapStream"));
 
-  // Setup of streams
+  // Nastaveni streamu video-komponent
   camera->setup(&n, camera_topic, QImage::Format_Grayscale8, "raw"); // in the case of grayscale cam
   //thermo->setup(&n, "/thermo_topic", QImage::Format_Grayscale8, "raw");
   map->setup(&n, map_stream_topic, QImage::Format_RGB888, "raw");
 
-  statusSub = this->n.subscribe<jackal_msgs::Status>(jackal_status_topic, 10, &MainApplication::receiveStatus, this);
-  speedModeSub = this->n.subscribe<std_msgs::Int32>(speed_mode_topic, 10, &MainApplication::receiveSpeedMode, this);
+  // Nastaveni subsriberu
+  status_subscriber = this->n.subscribe<jackal_msgs::Status>(jackal_status_topic, 10, &MainApplication::receiveStatus, this);
+  speed_mode_subscriber = this->n.subscribe<std_msgs::Int32>(speed_mode_topic, 10, &MainApplication::receiveSpeedMode, this);
   map_scale_subscriber = this->n.subscribe<std_msgs::Float32>(map_scale_topic, 10, &MainApplication::receiveMapScale, this);
   map_layers_publisher = n.advertise<std_msgs::Int32>(map_layers_topic, 10);
 
+  // Nastaveni stavu vrstev
   map_layers_status = (layer_photo) | ( layer_navigation << 1);
 
   // TODO: PUBLISH MAP LAYERS STATUS 
 }
 
+/**
+ * @brief MainApplication::mainLoop
+ *
+ * Nastaveni ROS smycky aplikace
+ */
 void MainApplication::mainLoop() {
   ros::spinOnce();
 }
 
+/**
+ * @brief MainApplication::getQmlObject
+ * @param objectName
+ * @return
+ *
+ * Ziskani QML objektu na zaklde jeho nazvu objectName v QML
+ */
 QObject * MainApplication::getQmlObject(const QString &objectName)
 {
   QObject *rootObject = this->rootObjects().first();
@@ -68,6 +93,12 @@ QObject * MainApplication::getQmlObject(const QString &objectName)
   return qmlObject;
 }
 
+/**
+ * @brief MainApplication::receiveStatus
+ * @param msg
+ *
+ * Callback metoda stavu jackal robota
+ */
 void MainApplication::receiveStatus(const jackal_msgs::Status::ConstPtr& msg)
 {
   float battery_voltage_value = msg->measured_battery;
@@ -87,6 +118,13 @@ void MainApplication::receiveStatus(const jackal_msgs::Status::ConstPtr& msg)
 
 }
 
+
+/**
+ * @brief MainApplication::receiveSpeedMode
+ * @param msg
+ *
+ * Callback metoda rychlostniho modu
+ */
 void MainApplication::receiveSpeedMode(const std_msgs::Int32::ConstPtr& msg)
 {
   QObject *SpeedModeValue = this->getQmlObject("speedModeValue");
@@ -114,6 +152,13 @@ void MainApplication::receiveSpeedMode(const std_msgs::Int32::ConstPtr& msg)
   SpeedModeValue->setProperty("text", speed_mode);
 }
 
+
+/**
+ * @brief MainApplication::receiveMapScale
+ * @param msg
+ *
+ * Callback metoda rozlišení mapy (scale)
+ */
 void MainApplication::receiveMapScale(const std_msgs::Float32::ConstPtr& msg) {
   QObject *SpeedModeValue = this->getQmlObject("mapScaleValue");
   SpeedModeValue->setProperty("text", QString::number(msg->data));

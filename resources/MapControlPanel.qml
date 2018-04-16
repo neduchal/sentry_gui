@@ -1,7 +1,10 @@
 import QtQuick 2.5
 
+
+
+
 Rectangle{
-    anchors.fill: parent
+    anchors.fill: parent    
 
     Rectangle{
         id: zoomPlus
@@ -84,7 +87,7 @@ Rectangle{
         id: navigationLayer
         width: 80
         height: 40
-        color: panelTextColor
+        color: "#aaaaaa"
         anchors.top : parent.top
         anchors.right : zoomLabel.left
         antialiasing: true
@@ -92,18 +95,25 @@ Rectangle{
             id: navigationLayerText
             text: "Navigace"
             anchors.centerIn: parent
-            color: whiteColor
-            //styleColor : whiteColor
+            color: "#333333"
         }
         MouseArea{
             anchors.fill: parent
             hoverEnabled: true
             acceptedButtons: Qt.LeftButton
-            //onClicked:  _zoomClass.zoomMinus()
-            onEntered:  { parent.color = panelColor;
-                          navigationLayerText.color = panelTextColor;}
-            onExited:  { parent.color = panelTextColor;
-                         navigationLayerText.color = whiteColor;}
+            onClicked: {
+                if (navigationLayerOn == 1) {
+                  _layerButtonClass.saveLayerStatus(1, 0);
+                  navigationLayer.color = "#aaaaaa";
+                  navigationLayerText.color = "#333333";
+                  navigationLayerOn = 0
+                } else {
+                  _layerButtonClass.saveLayerStatus(1, 1);
+                  navigationLayer.color = panelTextColor;
+                  navigationLayerText.color = whiteColor;
+                  navigationLayerOn = 1
+                }
+            }
         }
     }
 
@@ -111,7 +121,7 @@ Rectangle{
         id: photoLayer
         width: 80
         height: 40
-        color: panelTextColor
+        color: "#aaaaaa"
         anchors.top : parent.top
         anchors.right : navigationLayer.left
         antialiasing: true
@@ -119,18 +129,25 @@ Rectangle{
             id: photoLayerText
             text: "Fotografie"
             anchors.centerIn: parent
-            color: whiteColor
-            //styleColor : whiteColor
+            color: "#333333"
         }
         MouseArea{
             anchors.fill: parent
             hoverEnabled: true
             acceptedButtons: Qt.LeftButton
-            //onClicked:  _zoomClass.zoomMinus()
-            onEntered:  { parent.color = panelColor;
-                          photoLayerText.color = panelTextColor;}
-            onExited:  { parent.color = panelTextColor;
-                         photoLayerText.color = whiteColor;}
+            onClicked: {
+                if (photoLayerOn == 1) {
+                  _layerButtonClass.saveLayerStatus(0, 0);
+                  photoLayer.color = "#aaaaaa";
+                  photoLayerText.color = "#333333";
+                  photoLayerOn = 0
+                } else {
+                  _layerButtonClass.saveLayerStatus(0, 1);
+                  photoLayer.color = panelTextColor;
+                  photoLayerText.color = whiteColor;
+                  photoLayerOn = 1
+                }
+            }
         }
     }
 
@@ -207,11 +224,11 @@ Rectangle{
 
     Rectangle{
         id: scale
-        width: 80
+        width: 100
         height: 40
         color: panelColor
         anchors.top : parent.top
-        anchors.right : photoLayer.left
+        anchors.left : setReturn.right
         antialiasing: true
         Text{
             id: scaleText
@@ -228,7 +245,7 @@ Rectangle{
         height: 40
         color: panelColor
         anchors.top : parent.top
-        anchors.right : photoLayer.left
+        anchors.left : scale.right
         antialiasing: true
         Text{
             id: scaleValueText

@@ -15,6 +15,8 @@ Window {
     property string panelBorderColor : "#07ABBC"
     property string whiteColor : "#FFFFFF"
 
+    property int photoLayerOn: 0
+    property int navigationLayerOn: 0
 
     id: window1
     width: 1440
@@ -105,6 +107,14 @@ Window {
             anchors.right: parent.right
             // @disable-check M16
             //topic: "/wide_stereo/left/image_raw"
+        }
+        MouseArea{
+            anchors.fill: parent
+            hoverEnabled: true
+            acceptedButtons: Qt.LeftButton
+            onClicked: {
+                takePhotoText.text= mouseX.toString()
+            }
         }
     }
 

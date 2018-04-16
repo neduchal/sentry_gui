@@ -33,8 +33,8 @@ class MainApplication : public QQmlApplicationEngine {
 
    private:
         ros::NodeHandle n;
-        ros::Subscriber statusSub;
-        ros::Subscriber speedModeSub;
+        ros::Subscriber status_subscriber;
+        ros::Subscriber speed_mode_subscriber;
         ros::Subscriber map_scale_subscriber;
         ros::Publisher map_layers_publisher;
         float steering;
