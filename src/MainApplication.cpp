@@ -19,9 +19,9 @@ void MainApplication::run() {
   n.param<std::string>(ros::this_node::getName()+"/topic/speed_mode", speed_mode_topic, "/speed_mode");
   n.param<std::string>(ros::this_node::getName()+"/topic/jackal_status", jackal_status_topic, "/status");
 
-  n.param<float>(ros::this_node::getName()+"/battery/full", battery_full, 30.0);
-  n.param<float>(ros::this_node::getName()+"/battery/low", battery_low, 24.0);
-  n.param<float>(ros::this_node::getName()+"/battery/critical", battery_critical, 20.0);
+  n.param<double>(ros::this_node::getName()+"/battery/full", battery_full, 30.0);
+  n.param<double>(ros::this_node::getName()+"/battery/low", battery_low, 24.0);
+  n.param<double>(ros::this_node::getName()+"/battery/critical", battery_critical, 20.0);
 
   n.param<int>(ros::this_node::getName()+"/layer/photo", layer_photo, 0);
   n.param<int>(ros::this_node::getName()+"/layer/navigation", layer_navigation, 0);
@@ -50,7 +50,7 @@ void MainApplication::run() {
   statusSub = this->n.subscribe<jackal_msgs::Status>(jackal_status_topic, 10, &MainApplication::receiveStatus, this);
   speedModeSub = this->n.subscribe<std_msgs::Int32>(speed_mode_topic, 10, &MainApplication::receiveSpeedMode, this);
   map_scale_subscriber = this->n.subscribe<std_msgs::Float32>(map_scale_topic, 10, &MainApplication::receiveMapScale, this);
-  map_publisher = n.advertise<std_msgs::Int32>(map_layers_topic, 10);
+  map_layers_publisher = n.advertise<std_msgs::Int32>(map_layers_topic, 10);
 
   map_layers_status = (layer_photo) | ( layer_navigation << 1);
 
@@ -73,7 +73,7 @@ void MainApplication::receiveStatus(const jackal_msgs::Status::ConstPtr& msg)
   float battery_voltage_value = msg->measured_battery;
   float battery_voltage_percent = 0.0;
 
-  battery_voltage_percent = 100.0 * ((battery_voltage_value - (battery_critical - 2)) / (battery_full - (battery_critical - 2)))
+  battery_voltage_percent = 100.0 * ((battery_voltage_value - (battery_critical - 2)) / (battery_full - (battery_critical - 2)));
 
   QObject *batteryVoltageValue = this->getQmlObject("batteryVoltageValue");
   batteryVoltageValue->setProperty("text", QString::number(battery_voltage_percent));
@@ -116,5 +116,5 @@ void MainApplication::receiveSpeedMode(const std_msgs::Int32::ConstPtr& msg)
 
 void MainApplication::receiveMapScale(const std_msgs::Float32::ConstPtr& msg) {
   QObject *SpeedModeValue = this->getQmlObject("mapScaleValue");
-  batteryVoltageValue->setProperty("text", QString::number(msg->data));
+  SpeedModeValue->setProperty("text", QString::number(msg->data));
 }

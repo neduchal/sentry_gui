@@ -11,6 +11,8 @@
 #include "sensor_msgs/Joy.h"
 #include "jackal_msgs/Status.h"
 #include "std_msgs/Int32.h"
+#include "std_msgs/Float32.h"
+
 
 class MainApplication : public QQmlApplicationEngine {
     Q_OBJECT
