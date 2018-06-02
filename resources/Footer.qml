@@ -45,7 +45,6 @@ Rectangle{
         anchors.leftMargin: 10
         anchors.left: batteryVoltageValue.right
         anchors.top : batteryVoltageValue.top
-        //anchors.top : parent.top
         font.family: "Ubuntu"
         font.pixelSize: 16
         color: panelTextColor
@@ -54,7 +53,7 @@ Rectangle{
     Text{
         id: speedModeValue
         objectName: "speedModeValue"
-        text: "N/A"
+        text: "STOP"
         anchors.leftMargin: 2
         anchors.left: speedModeLabel.right
         anchors.top : speedModeLabel.top

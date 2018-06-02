@@ -2,8 +2,11 @@
 
 <launch>
 
-  <arg name="/projectname/general/root_dir" default="/home/neduchal/Data/data/sitmp/jackal/" />
-  <arg name="/projectname/general/data_dir" default="data/" />
+  <param name="/use_sim_time" value="false"/>
+
+
+  <arg name="root_dir" default="/home/neduchal/Data/data/sitmp/jackal/" />
+  <arg name="data_dir" default="data/" />
 
   <arg name="tile_size_topic" default="/map_tile_size" />
   <arg name="pose_topic" default="/pose_from_tf" />
@@ -11,12 +14,16 @@
   <arg name="map_stream_topic" default="/map_stream" />
   <arg name="map_scale_topic" default="/map_scale" />
   <arg name="goal_position_topic" default="/goal_position" />
+  <arg name="goal_position_meters_topic" default="/goal_position_meters" />
   <arg name="camera_topic" default="/pylon_camera_node/image_raw" />
   <arg name="speed_mode_topic" default="/speed_mode" />
   <arg name="control_topic" default="/cmd_vel" />
   <arg name="joy_topic" default="/joy" />
 
-  <param name="/use_sim_time" value="true"/>
+  <node pkg="sentry_gui" type="sentry_mission.py" name="mission_directory_server" required="true" output="screen">
+    <param name="io/root_dir" type="str" value="$(arg root_dir)" />
+    <param name="io/data_dir" type="str" value="$(arg data_dir)" />
+  </node>
 
   <!-- Start Gui -->
   <node pkg="sentry_gui" type="gui" name="sentry_gui" output="screen"  required="true">
@@ -26,6 +33,7 @@
     <param name="topic/speed_mode" type="str" value="$(arg speed_mode_topic)" />
     <param name="topic/jackal_status" type="str" value="/status" />
     <param name="topic/goal_position" type="str" value="$(arg goal_position_topic)" />
+    <param name="topic/goal_position_meters" type="str" value="$(arg goal_position_meters_topic)" />
     <param name="image_panel/width" type="int" value="640" />
     <param name="image_panel/height" type="int" value="480" />
     <param name="map_panel/width" type="int" value="700" />
@@ -45,12 +53,13 @@
     <param name="topic/pose" type="str" value="$(arg pose_topic)" />
     <param name="topic/tile_size" type="str" value="$(arg tile_size_topic)" />
     <param name="topic/goal_position" type="str" value="$(arg goal_position_topic)" />
+    <param name="topic/goal_position_meters" type="str" value="$(arg goal_position_meters_topic)" />
     <param name="topic/goal" type="str" value="/move_base_simple/goal" />
     <param name="general/tile_size" type="double" value="6.0" />
     <param name="general/min_tile_size" type="double" value="4.0" />
     <param name="general/max_tile_size" type="double" value="16.0" />
-    <param name="output/width" type="int" value="750" />
-    <param name="ouptut/height" type="int" value="750" />
+    <param name="output/width" type="int" value="700" />
+    <param name="ouptut/height" type="int" value="700" />
   </node>
 
   <node pkg="sentry_map_stream" type="pose_from_tf_node" name="pose_from_tf" output="screen">
@@ -71,9 +80,13 @@
     <param name="controller/gear_up_button" type="int" value="7" />
   </node>
 
+  <node pkg="sentry_photo" type="sentry_photo_node" name="sentry_photo_node" output="screen">
+  </node>
+
 
   <node pkg="joy" type="joy_node" name="joy_node" />
 
-  <include file="$(find sentry_gui)/launch/gmapping.launch" />
+  <include file="$(find sentry_gui)/launch/gmapping_robot.launch" />
   <include file="$(find jackal_navigation)/launch/include/move_base.launch" />
+
 </launch>

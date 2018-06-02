@@ -46,6 +46,8 @@ class MainApplication : public QQmlApplicationEngine {
         std::string camera_topic;
         std::string speed_mode_topic;
         std::string jackal_status_topic;
+        std::string root_directory;
+        std::string data_directory;
 
         int map_layers_status;
 

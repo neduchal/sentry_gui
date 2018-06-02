@@ -15,6 +15,9 @@ Window {
     property string panelBorderColor : "#07ABBC"
     property string whiteColor : "#FFFFFF"
 
+    property int bSetGoal: 0
+    property int mouseX1: 0
+    property int mouseY1: 0
     property int photoLayerOn: 0
     property int navigationLayerOn: 0
 
@@ -40,7 +43,7 @@ Window {
         anchors.left: map_panel.left
         anchors.right:map_panel.right
         color: whiteColor
-        MapControlPanel{}
+        MapControlPanel{id: mapControlPanelObject}
     }
 
     Rectangle{
@@ -108,14 +111,6 @@ Window {
             // @disable-check M16
             //topic: "/wide_stereo/left/image_raw"
         }
-        MouseArea{
-            anchors.fill: parent
-            hoverEnabled: true
-            acceptedButtons: Qt.LeftButton
-            onClicked: {
-                takePhotoText.text= mouseX.toString()
-            }
-        }
     }
 
 
@@ -177,6 +172,25 @@ Window {
             //anchors.right: parent.right
             // @disable-check M16
             //topic: "/wide_stereo/left/image_raw"
+        }
+        MouseArea{
+            anchors.fill: parent
+            hoverEnabled: true
+            acceptedButtons: Qt.LeftButton
+            onClicked: {
+                if (bSetGoal == 2) {
+                    _setGoalClass.setGoalWithOrientation(mouseX1, mouseY1, mouseX, mouseY)
+                    mapControlPanelObject.setGoalColor = panelTextColor;
+                    mapControlPanelObject.setGoalTextColor = whiteColor;
+                    bSetGoal=0
+                }
+                if (bSetGoal == 1) {
+                    mouseX1 = mouseX
+                    mouseY1 = mouseY
+                    //_setGoalClass.setGoal(mouseX, mouseY)
+                    bSetGoal = 2
+                }
+            }
         }
     }
 /*

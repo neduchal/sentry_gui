@@ -1,10 +1,14 @@
 import QtQuick 2.5
-
-
+import QtQuick.Window 2.2
+import QtQuick.Controls 1.2
 
 
 Rectangle{
-    anchors.fill: parent    
+
+    property alias setGoalColor: setGoal.color
+    property alias setGoalTextColor: setGoalText.color
+
+    anchors.fill: parent
 
     Rectangle{
         id: zoomPlus
@@ -75,7 +79,7 @@ Rectangle{
         anchors.right : zoomMinus.left
         antialiasing: true
         Text{
-            id: zoomLAbelText
+            id: zoomLabelText
             text: "Zoom"
             anchors.centerIn: parent
             color: panelTextColor
@@ -116,7 +120,7 @@ Rectangle{
             }
         }
     }
-
+/*
     Rectangle{
         id: photoLayer
         width: 80
@@ -150,14 +154,14 @@ Rectangle{
             }
         }
     }
-
+*/
     Rectangle{
         id: layers
         width: 60
         height: 40
         color: panelColor
         anchors.top : parent.top
-        anchors.right : photoLayer.left
+        anchors.right : navigationLayer.left
         antialiasing: true
         Text{
             id: layersText
@@ -171,6 +175,7 @@ Rectangle{
     // LEFT
     Rectangle{
         id: setGoal
+        objectName: "setGoal"
         width: 100
         height: 40
         color: panelTextColor
@@ -179,20 +184,49 @@ Rectangle{
         antialiasing: true
         Text{
             id: setGoalText
+            objectName: "setGoalText";
             text: "Nastavit cíl"
             anchors.centerIn: parent
             color: whiteColor
-            //styleColor : whiteColor
         }
         MouseArea{
             anchors.fill: parent
             hoverEnabled: true
             acceptedButtons: Qt.LeftButton
-            //onClicked:  _zoomClass.zoomMinus()
+            onClicked:  {bSetGoal=1;
+                         parent.color = "#aa0000";
+                         setGoalText.color = whiteColor;
+            }
+        }
+    }
+
+    Rectangle{
+        id: cancelGoal
+        objectName: "cancelGoal"
+        width: 100
+        height: 40
+        color: panelTextColor
+        anchors.top : parent.top
+        anchors.left : setGoal.right
+        antialiasing: true
+        Text{
+            id: cancelGoalText
+            objectName: "cancelGoalText";
+            text: "Zrušit cíl"
+            anchors.centerIn: parent
+            color: whiteColor
+        }
+        MouseArea{
+            anchors.fill: parent
+            hoverEnabled: true
+            acceptedButtons: Qt.LeftButton
+            onClicked:  { _setGoalClass.cancelGoal() }
             onEntered:  { parent.color = panelColor;
-                          setGoalText.color = panelTextColor;}
+                          cancelGoalText.color = panelTextColor;
+                          cancelGoalText.styleColor = panelTextColor;}
             onExited:  { parent.color = panelTextColor;
-                         setGoalText.color = whiteColor;}
+                         cancelGoalText.color = whiteColor;
+                         cancelGoalText.styleColor = whiteColor;}
         }
     }
 
@@ -202,7 +236,7 @@ Rectangle{
         height: 40
         color: panelTextColor
         anchors.top : parent.top
-        anchors.left : setGoal.right
+        anchors.left : cancelGoal.right
         antialiasing: true
         Text{
             id: setReturnText
@@ -214,7 +248,7 @@ Rectangle{
             anchors.fill: parent
             hoverEnabled: true
             acceptedButtons: Qt.LeftButton
-            //onClicked:  _zoomClass.zoomMinus()
+            onClicked:  _setGoalClass.setGoalInMeters(0, 0, 0)
             onEntered:  { parent.color = panelColor;
                           setReturnText.color = panelTextColor;}
             onExited:  { parent.color = panelTextColor;

@@ -23,8 +23,8 @@ void MainApplication::run() {
   // Nastaveni topicu
   n.param<std::string>(ros::this_node::getName()+"/topic/map_stream_topic", map_stream_topic, "/map_stream");
   n.param<std::string>(ros::this_node::getName()+"/topic/map_scale_topic", map_scale_topic, "/map_scale");
-  n.param<std::string>(ros::this_node::getName()+"/topic/map_layers_topic", map_stream_topic, "/map_layers");
-  n.param<std::string>(ros::this_node::getName()+"/topic/camera_topic", camera_topic, "/camera_topic");
+  n.param<std::string>(ros::this_node::getName()+"/topic/map_layers_topic", map_layers_topic, "/map_layers");
+  n.param<std::string>(ros::this_node::getName()+"/topic/camera", camera_topic, "/camera_topic");
   n.param<std::string>(ros::this_node::getName()+"/topic/speed_mode", speed_mode_topic, "/speed_mode");
   n.param<std::string>(ros::this_node::getName()+"/topic/jackal_status", jackal_status_topic, "/status");
 
@@ -84,7 +84,7 @@ void MainApplication::mainLoop() {
  * @param objectName
  * @return
  *
- * Ziskani QML objektu na zaklde jeho nazvu objectName v QML
+ * Ziskani QML objektu na zaklde jeho nazvu obj  <!-- ectName v QML
  */
 QObject * MainApplication::getQmlObject(const QString &objectName)
 {
